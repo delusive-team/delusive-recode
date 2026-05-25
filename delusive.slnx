@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="delusive/delusive.vcxproj" Id="e508dda4-a5b9-4896-a5de-1cba88107134" />
+</Solution>

@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="framework">
+      <UniqueIdentifier>{1903a5d2-3803-4e63-a786-fbf602bd849c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\elements">
+      <UniqueIdentifier>{c7cacbc7-c449-41dc-97e7-7132ed754783}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\data">
+      <UniqueIdentifier>{4d309a47-69e3-4af6-be41-8348134c4136}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\settings">
+      <UniqueIdentifier>{25034cb3-5800-462c-b348-f4af65668ba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty">
+      <UniqueIdentifier>{ccc54d96-72f7-4436-8a83-fa3c95630349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\imgui">
+      <UniqueIdentifier>{8e6165f3-0e1c-4cfc-a3c2-72543f8ca897}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\imgui\impl">
+      <UniqueIdentifier>{2516b7d7-b875-48cb-8877-76225056bfb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\freetype">
+      <UniqueIdentifier>{92aa3f18-0f62-4ee8-bc64-9dd79c9c15cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\dxsdk">
+      <UniqueIdentifier>{a1b2c3d4-e5f6-7890-abcd-ef1234567890}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DllMain.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\gui.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\button.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\checkbox.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\child.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\coloredit.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\draw.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\dropdown.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\helpers.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\keybind.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\section.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\slider.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\table.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\textfield.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\window.cpp">
+      <Filter>framework\elements</Filter>
+    </ClCompile>
+    <!-- detours.cpp удалён — используем detours.lib -->
+    <ClCompile Include="thirdparty\imgui\imgui.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui_draw.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui_freetype.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui_tables.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui_widgets.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>thirdparty\imgui\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>thirdparty\imgui\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\discord\discord.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\discord\include\connection_win.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\discord\include\discord_register_win.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\discord\include\discord_rpc.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\discord\include\rpc_connection.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\discord\include\serialization.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="configs\configs.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="vcruntime\hde\hde64.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\elements\notifications.h">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="vcruntime\logger\logger.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="game\il2cpp\il2cpp.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <MASM Include="vcruntime\safe\x64\safe_call.asm">
+      <Filter>Исходные файлы</Filter>
+    </MASM>
+    <MASM Include="vcruntime\safe\x64\system_call.asm">
+      <Filter>Исходные файлы</Filter>
+    </MASM>
+    <ClCompile Include="vcruntime\memory\scan.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="vcruntime\os\kernel32.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="vcruntime\pe\image.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="vcruntime\safe\safe.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="vcruntime\security\secure.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework\data\fonts.h">
+      <Filter>framework\data</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\data\images.h">
+      <Filter>framework\data</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\settings\colors.h">
+      <Filter>framework\settings</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\settings\elements.h">
+      <Filter>framework\settings</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\settings\functions.h">
+      <Filter>framework\settings</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\settings\variables.h">
+      <Filter>framework\settings</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imconfig.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imgui.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imgui_freetype.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imgui_internal.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imstb_rectpack.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imstb_textedit.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imstb_truetype.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\backends\imgui_impl_dx11.h">
+      <Filter>thirdparty\imgui\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\backends\imgui_impl_win32.h">
+      <Filter>thirdparty\imgui\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\freetype\include\ft2build.h">
+      <Filter>thirdparty\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\freetype\include\freetype\freetype.h">
+      <Filter>thirdparty\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3D11.h">
+      <Filter>thirdparty\dxsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3Dcommon.h">
+      <Filter>thirdparty\dxsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3Dcompiler.h">
+      <Filter>thirdparty\dxsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\DXGI.h">
+      <Filter>thirdparty\dxsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\DxErr.h">
+      <Filter>thirdparty\dxsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\XInput.h">
+      <Filter>thirdparty\dxsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3D11SDKLayers.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3D11Shader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\DXGIFormat.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\DXGIType.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\discord.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\backoff.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\connection.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\discord_register.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\discord_rpc.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\msg_queue.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rpc_connection.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\serialization.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\writer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\stringbuffer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\schema.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\stream.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\reader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\rapidjson.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\prettywriter.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\ostreamwrapper.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\pointer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\memorystream.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\istreamwrapper.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\memorybuffer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\fwd.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\filewritestream.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\filereadstream.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\encodedstream.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\encodings.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\document.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\cursorstreamwrapper.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\allocators.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\error\en.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\error\error.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\biginteger.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\clzll.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\diyfp.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\dtoa.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\itoa.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\ieee754.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\meta.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\regex.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\stack.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\pow10.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\strfunc.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\strtod.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\internal\swap.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\msinttypes\inttypes.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\discord\include\rapidjson\msinttypes\stdint.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\stb_image.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="configs\configs.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\crypto\xor.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\crypto\base64.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\hde\format64.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\hde\hde64.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\hde\table64.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\scripts.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\api\include\lua.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\api\include\lauxlib.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\api\include\luaconf.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\api\include\luajit.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="scripts\api\include\lualib.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\crypto\hash.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\logger\logger.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\elements\esp_preview.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\il2cpp\il2cpp.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\enums\enums.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\hooks\hooks.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\memory\memory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\pe\image.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\memory\scan.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\os\kernel32.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\os\nt.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\os\syscalls.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\safe\safe.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\security\secure.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\utils\character.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="vcruntime\vcruntime.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\sdk.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\enums\enums.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DllMain.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\convar\admin.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\convar\client.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\convar\culling.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\convar\graphics.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\convar\input.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\convar\weather.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\math\matrix.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\math\vector.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\model_state.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\protobuf\attack.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\protobuf\entity.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\protobuf\environment.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\protobuf\player_attack.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\protobuf\player_name_id.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\protobuf\player_projectile_attack.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\protobuf\player_team.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\protobuf\projectile.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\protobuf\projectileshoot.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\system\string.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\tod_ambient_parameters.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\tod_cycle_parameters.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\tod_day_parameters.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\tod_night_parameters.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\tod_sky.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\tod_sun_parameters.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\array.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\dictionary.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\list.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\list_dictionary.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\object.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\string.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\steam_platform.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\player_walk_movement.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\base_movement.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\asset_bundle.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\rigid_body.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\behaviour.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\component.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\game_object.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\screen.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\transform.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\quaternion.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\physics.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\ray.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\raycast_hit.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\renderer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\shader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\time.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\material.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\input.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\color.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\texture.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\box_collider.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\capsule_collider.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\collider.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\sprite.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\sphere_collider.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\player_tick.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\base_view_model.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\base_entity.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\stash_container.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\viewmodel_bob.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\viewmodel_lower.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\viewmodel_sway.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\world_item.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\workbench.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\asset_name_cache.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\projectile.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\trace_info.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\protobuf\player_projectile_update.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\math\bounds.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\math\rect.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\player_input.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\player_inventory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\player_model.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\skinned_multi_mesh.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\lootable_corpse.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\magazine.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\main_camera.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\model.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\map_interface.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\player_eyes.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\ui_inventory.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\base_combat_entity.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\base_mountable.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\base_networkable.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\base_player.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\building_block.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\building_privlidge.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\dropped_item_container.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\entity_realm.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\game_manager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\game_manifest.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\game_object_ref.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\game_physics.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\game_trace.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\held_entity.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\hit_info.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\hit_test.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\input_message.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\input_state.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\item.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\item_container.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\item_definition.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\item_icon.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\item_mod_projectile.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\local_player.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\recoil_properties.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\base_melee.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\console_system.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\player_team.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\bundles.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\translate_phrase.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\features\misc\misc.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\hooks\impl\item_icon.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\hooks\impl\base_player.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="core\renderer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="core\unloader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="core\esp_renderer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\features\esp\esp.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\camera.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\unity\resources.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\audiodefs.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\comdecl.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D2D1.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D2D1Helper.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D2DBaseTypes.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D2Derr.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3D10.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3D10effect.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3d10misc.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3d10sdklayers.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3D10shader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3D10_1.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3D10_1shader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3d9.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3d9caps.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3d9types.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3DCSX.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3DX10.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3dx10async.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3DX10core.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3DX10math.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3DX10mesh.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3DX10tex.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3DX11.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3DX11async.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3DX11core.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\D3DX11tex.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3dx9.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3dx9anim.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3dx9core.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3dx9effect.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3dx9math.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3dx9mesh.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3dx9shader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3dx9shape.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3dx9tex.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\d3dx9xof.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\Dcommon.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\dinput.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\dinputd.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\dsconf.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\dsetup.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\dsound.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\DWrite.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\dxdiag.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\dxfile.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\dxsdkver.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\gameux.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\PIXPlugin.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\rmxfguid.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\rmxftmpl.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\rpcsal.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\X3DAudio.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\xact3.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\xact3d3.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\xact3wb.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\XAPO.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\XAPOBase.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\XAPOFX.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\XAudio2.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\XAudio2fx.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\XDSP.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\xma2defs.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\dxsdk\include\xnamath.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\animator.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\hooks\impl\client_late_update.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\sdk\view_model.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\features\misc\violation.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\hooks\impl\base_melee.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\hooks\impl\steam_platform.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\hooks\impl\tod_sky.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="thirdparty\dxsdk\include\D3DX10math.inl">
+      <Filter>thirdparty\dxsdk</Filter>
+    </None>
+    <None Include="thirdparty\dxsdk\include\d3dx9math.inl">
+      <Filter>thirdparty\dxsdk</Filter>
+    </None>
+    <None Include="thirdparty\dxsdk\include\D3DX_DXGIFormatConvert.inl">
+      <Filter>thirdparty\dxsdk</Filter>
+    </None>
+    <None Include="thirdparty\dxsdk\include\xnamathconvert.inl">
+      <Filter>thirdparty\dxsdk</Filter>
+    </None>
+    <None Include="thirdparty\dxsdk\include\xnamathmatrix.inl">
+      <Filter>thirdparty\dxsdk</Filter>
+    </None>
+    <None Include="thirdparty\dxsdk\include\xnamathmisc.inl">
+      <Filter>thirdparty\dxsdk</Filter>
+    </None>
+    <None Include="thirdparty\dxsdk\include\xnamathvector.inl">
+      <Filter>thirdparty\dxsdk</Filter>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="thirdparty\imgui\LICENSE.txt" />
+    <Text Include="thirdparty\discord\include\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="scripts\x64\lua51.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d2d1.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3d10.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3d10_1.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3d11.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3d9.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3dcompiler.lib" />
+    <Library Include="thirdparty\dxsdk\lib\D3DCSX.lib" />
+    <Library Include="thirdparty\dxsdk\lib\D3DCSXd.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3dx10.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3dx10d.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3dx11.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3dx11d.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3dx9.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3dx9d.lib" />
+    <Library Include="thirdparty\dxsdk\lib\d3dxof.lib" />
+    <Library Include="thirdparty\dxsdk\lib\dinput8.lib" />
+    <Library Include="thirdparty\dxsdk\lib\dsound.lib" />
+    <Library Include="thirdparty\dxsdk\lib\dwrite.lib" />
+    <Library Include="thirdparty\dxsdk\lib\DxErr.lib" />
+    <Library Include="thirdparty\dxsdk\lib\dxgi.lib" />
+    <Library Include="thirdparty\dxsdk\lib\dxguid.lib" />
+    <Library Include="thirdparty\dxsdk\lib\X3DAudio.lib" />
+    <Library Include="thirdparty\dxsdk\lib\xapobase.lib" />
+    <Library Include="thirdparty\dxsdk\lib\xapobased.lib" />
+    <Library Include="thirdparty\dxsdk\lib\XAPOFX.lib" />
+    <Library Include="thirdparty\dxsdk\lib\XInput.lib" />
+  </ItemGroup>
+</Project>
