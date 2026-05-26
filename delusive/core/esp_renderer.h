@@ -15,7 +15,7 @@ enum e_text_flags : uint32_t {
 
 class c_esp_renderer {
 private:
-    #define draw_list ImGui::GetForegroundDrawList()
+    #define draw_list ImGui::GetBackgroundDrawList()
 
     c_esp_renderer() = default;
 

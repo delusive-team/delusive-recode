@@ -377,6 +377,7 @@ namespace enums {
 		r_little1 = 61,
 		r_little2 = 62,
 		r_little3 = 63,
+		r_middle1 = 64,
 		r_middle2 = 65,
 		r_middle3 = 66,
 		r_prop = 67,

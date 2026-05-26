@@ -1071,6 +1071,9 @@
     <ClInclude Include="game\features\visuals\visuals.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="game\features\esp\shared\shared.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="thirdparty\dxsdk\include\D3DX10math.inl">

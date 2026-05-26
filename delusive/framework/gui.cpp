@@ -6,6 +6,7 @@
 #include "../scripts/scripts.h"
 #include "elements/esp_preview.h"
 #include "../game/features/misc/violation.h"
+#include "../game/features/esp/shared/shared.h"
 
 namespace core {
     extern volatile bool g_unloading;
@@ -1435,6 +1436,62 @@ void c_gui::render()
 											ImGui::BeginTooltip();
 											ImGui::Text("Instantly kills your character\nwhen the keybind is pressed.");
 											ImGui::EndTooltip();
+										}
+									}
+									gui->end_child();
+
+									// ── Shared ESP ────────────────────────────────────
+									gui->begin_child("Shared ESP", 2, 1, ImVec2(0, ImGui::GetContentRegionAvail().y - elements->content.padding.y));
+									{
+										// status badge
+										bool sh_connected = g_shared_esp.connected.load();
+										ImVec4 badge_col = sh_connected
+											? ImVec4(0.3f, 0.8f, 0.3f, 1.f)
+											: ImVec4(0.8f, 0.25f, 0.25f, 1.f);
+										ImGui::TextColored(badge_col, sh_connected ? "● Connected" : "● Disconnected");
+										ImGui::SameLine();
+										ImGui::TextDisabled("  %s", g_shared_esp.status_text);
+										ImGui::Separator();
+
+										gui->checkbox("Enable Shared ESP", &config::shared_esp::enabled.value);
+										if (config::shared_esp::enabled.value)
+										{
+											// IP input
+											ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
+											ImGui::InputText("##sh_ip", g_shared_esp.server_ip, sizeof(g_shared_esp.server_ip));
+											ImGui::SameLine(0, 4);
+
+											// Port input
+											ImGui::SetNextItemWidth(80.f * dpi_scale);
+											ImGui::InputInt("##sh_port", &g_shared_esp.server_port, 0, 0);
+											g_shared_esp.server_port = ImClamp(g_shared_esp.server_port, 1, 65535);
+
+											ImGui::Separator();
+
+											if (!sh_connected) {
+												if (ImGui::Button("Connect", ImVec2(-1, 0)))
+													g_shared_esp.connect(g_shared_esp.server_ip, g_shared_esp.server_port);
+											} else {
+												if (ImGui::Button("Disconnect", ImVec2(-1, 0)))
+													g_shared_esp.disconnect();
+											}
+
+											ImGui::Separator();
+
+											gui->checkbox("Show Box",      &config::shared_esp::box.value);
+											if (config::shared_esp::box.value) { gui->sameline(); gui->label_color_edit("##sh_box_clr", (float*)&config::shared_esp::box_color.value.Value); }
+
+											gui->checkbox("Show Name",     &config::shared_esp::name.value);
+											if (config::shared_esp::name.value) { gui->sameline(); gui->label_color_edit("##sh_name_clr", (float*)&config::shared_esp::name_color.value.Value); }
+
+											gui->checkbox("Show Distance", &config::shared_esp::distance.value);
+											if (config::shared_esp::distance.value) { gui->sameline(); gui->label_color_edit("##sh_dist_clr", (float*)&config::shared_esp::distance_color.value.Value); }
+
+											gui->checkbox("Show Health",   &config::shared_esp::health.value);
+											if (config::shared_esp::health.value) { gui->sameline(); gui->label_color_edit("##sh_hp_clr", (float*)&config::shared_esp::health_color.value.Value); }
+
+											gui->checkbox("Snaplines",     &config::shared_esp::snapline.value);
+											if (config::shared_esp::snapline.value) { gui->sameline(); gui->label_color_edit("##sh_snap_clr", (float*)&config::shared_esp::snapline_color.value.Value); }
 										}
 									}
 									gui->end_child();

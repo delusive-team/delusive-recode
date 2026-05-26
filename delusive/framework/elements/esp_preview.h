@@ -509,6 +509,49 @@ namespace esp_preview
         end_preview_popup();
     }
 
+	static inline void draw_snapline_context()
+	{
+		begin_preview_popup();
+		if (ImGui::BeginPopup("##esp_ctx_snapline")) {
+			ImGui::TextColored(clr->accent, "Snapline");
+			ImGui::Separator();
+			const char* origins[] = { "Top", "Center", "Bottom" };
+			gui->dropdown("Origin", &config::esp::players_snapline_origin.value, origins, IM_ARRAYSIZE(origins));
+			gui->label_color_edit("Color", (float*)&config::esp::players_snapline_color.value.Value);
+			ImGui::EndPopup();
+		}
+		end_preview_popup();
+	}
+
+	static inline void draw_view_direction_context()
+	{
+		begin_preview_popup();
+		if (ImGui::BeginPopup("##esp_ctx_view_direction")) {
+			ImGui::TextColored(clr->accent, "View Direction");
+			ImGui::Separator();
+			gui->label_color_edit("Color", (float*)&config::esp::players_view_direction_color.value.Value);
+			ImGui::EndPopup();
+		}
+		end_preview_popup();
+	}
+
+	static inline void draw_oof_arrows_context()
+	{
+		begin_preview_popup();
+		if (ImGui::BeginPopup("##esp_ctx_oof_arrows")) {
+			ImGui::TextColored(clr->accent, "Out of FOV Arrows");
+			ImGui::Separator();
+			const char* styles[] = { "Flat", "Cursor", "Curved" };
+			gui->dropdown("Style", &config::esp::players_oof_arrows_style.value, styles, IM_ARRAYSIZE(styles));
+			gui->slider_float("Radius", &config::esp::players_oof_arrows_radius.value, 50.f, 500.f, false, "%.0f");
+			gui->checkbox("Rainbow Mode", &config::esp::players_oof_arrows_rainbow.value);
+			gui->checkbox("Pulse Mode", &config::esp::players_oof_arrows_pulse.value);
+			gui->label_color_edit("Color", (float*)&config::esp::players_oof_arrows_color.value.Value);
+			ImGui::EndPopup();
+		}
+		end_preview_popup();
+	}
+
     static inline ImVec2 base_for_anchor(int anchor, ImVec2 box_min, ImVec2 box_max, ImVec2 extent, float scale)
     {
         anchor = clean_anchor(anchor, anchor_top);
@@ -578,6 +621,51 @@ namespace esp_preview
         ::draw->push_clip_rect(dl, canvas_min + ImVec2(1, 1), canvas_max - ImVec2(1, 1), true);
 
         draw_skeleton(dl, box_min, box_max, ui_scale);
+
+		if (config::esp::players_snapline.value) {
+			ImU32 snap_col = to_u32(config::esp::players_snapline_color.value);
+			float sx = canvas_min.x + cw * 0.5f;
+			float sy = canvas_min.y;
+			if (config::esp::players_snapline_origin.value == 1) sy = canvas_min.y + ch * 0.5f;
+			else if (config::esp::players_snapline_origin.value == 2) sy = canvas_max.y;
+			float end_y = (config::esp::players_snapline_origin.value == 0) ? box_min.y : box_max.y;
+			::draw->line(dl, ImVec2(sx, sy), ImVec2(box_min.x + box_w * 0.5f, end_y), IM_COL32(0, 0, 0, 255), 3.f);
+			::draw->line(dl, ImVec2(sx, sy), ImVec2(box_min.x + box_w * 0.5f, end_y), snap_col, 1.f);
+			
+			// Click area for snapline
+			ImRect snap_rect(ImVec2(sx - 10.f, ImMin(sy, end_y)), ImVec2(sx + 10.f, ImMax(sy, end_y)));
+			if (in_canvas && ImGui::IsMouseHoveringRect(snap_rect.Min, snap_rect.Max) && ImGui::IsMouseClicked(1))
+				ImGui::OpenPopup("##esp_ctx_snapline");
+		}
+
+		if (config::esp::players_view_direction.value) {
+			ImU32 view_col = to_u32(config::esp::players_view_direction_color.value);
+			ImVec2 head_pos = ImVec2((box_min.x + box_max.x) * 0.5f, box_min.y + box_h * 0.08f);
+			ImVec2 look_pos = head_pos + ImVec2(box_w * 0.6f, -box_h * 0.1f);
+			::draw->line(dl, head_pos, look_pos, view_col, 1.5f);
+			
+			// Click area for view direction
+			ImRect view_rect(ImVec2(ImMin(head_pos.x, look_pos.x) - 10.f, ImMin(head_pos.y, look_pos.y) - 10.f), ImVec2(ImMax(head_pos.x, look_pos.x) + 10.f, ImMax(head_pos.y, look_pos.y) + 10.f));
+			if (in_canvas && ImGui::IsMouseHoveringRect(view_rect.Min, view_rect.Max) && ImGui::IsMouseClicked(1))
+				ImGui::OpenPopup("##esp_ctx_view_direction");
+		}
+
+		if (config::esp::players_oof_arrows.value) {
+			ImU32 oof_col = to_u32(config::esp::players_oof_arrows_color.value);
+			ImVec2 arrow_pos = ImVec2(canvas_min.x + cw * 0.85f, canvas_min.y + ch * 0.15f);
+			float angle = -0.785f; // -45 degrees
+			float size = 12.f * ui_scale;
+			ImVec2 tip = arrow_pos;
+			ImVec2 l_pt = ImVec2(arrow_pos.x + std::sin(angle - 2.4f) * size, arrow_pos.y - std::cos(angle - 2.4f) * size);
+			ImVec2 r_pt = ImVec2(arrow_pos.x + std::sin(angle + 2.4f) * size, arrow_pos.y - std::cos(angle + 2.4f) * size);
+			dl->AddTriangleFilled(tip, l_pt, r_pt, oof_col);
+			
+			// Click area for oof arrows
+			ImRect oof_rect(ImVec2(arrow_pos.x - 20.f, arrow_pos.y - 20.f), ImVec2(arrow_pos.x + 20.f, arrow_pos.y + 20.f));
+			if (in_canvas && ImGui::IsMouseHoveringRect(oof_rect.Min, oof_rect.Max) && ImGui::IsMouseClicked(1))
+				ImGui::OpenPopup("##esp_ctx_oof_arrows");
+		}
+
         draw_box(dl, box_min, box_max);
 
         const ImRect skeleton_hit(ImVec2(box_min.x + box_w * 0.24f, box_min.y), ImVec2(box_max.x - box_w * 0.24f, box_max.y));
@@ -601,6 +689,8 @@ namespace esp_preview
             ordered[i] = &st.items[i];
         std::sort(ordered.begin(), ordered.end(), [](const item_t* a, const item_t* b) { return a->order < b->order; });
 
+		float group_offsets[5] = {0.f};
+
         for (item_t* item : ordered) {
             if (!item_enabled(*item))
                 continue;
@@ -619,7 +709,19 @@ namespace esp_preview
                 item->extent = get_font(item->font ? *item->font : 0)->CalcTextSizeA(logical_size * ui_scale, FLT_MAX, 0.f, text.c_str());
             }
 
-            item->base = base_for_anchor(*item->anchor, box_min, box_max, item->extent, ui_scale);
+			int a = *item->anchor;
+            item->base = base_for_anchor(a, box_min, box_max, item->extent, ui_scale);
+
+			if (!item->is_bar) {
+				if (a == anchor_top) {
+					item->base.y -= group_offsets[a];
+					group_offsets[a] += item->extent.y + 2.f * ui_scale;
+				} else {
+					item->base.y += group_offsets[a];
+					group_offsets[a] += item->extent.y + 2.f * ui_scale;
+				}
+			}
+
             item->target = item->base + ImVec2(*item->ox * ui_scale, *item->oy * ui_scale);
 
             if (!item->inited) {
@@ -724,6 +826,9 @@ namespace esp_preview
 
         draw_box_context();
         draw_skeleton_context();
+		draw_snapline_context();
+		draw_view_direction_context();
+		draw_oof_arrows_context();
 
         const char* caption = "GG HYLI NET";
         const float caption_size = ImMax(9.f, 10.f * ui_scale);

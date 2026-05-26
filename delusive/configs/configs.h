@@ -384,39 +384,33 @@ namespace config {
         CFG_ITEM(bool, players_show_wounded, false);
         CFG_ITEM(bool, players_show_teammates, false);
 
-        // отрисовка боксов
         CFG_ITEM(bool, players_box, true);
         CFG_ITEM(int, players_box_type, 0); // 0 = normal, 1 = corner
         CFG_ITEM(bool, players_box_fill, false);
         CFG_ITEM(ImColor, players_box_color, ImColor(255, 255, 255, 255));
         CFG_ITEM(ImColor, players_box_fill_color, ImColor(255, 255, 255, 100));
 
-        // отрисовка скелета
         CFG_ITEM(bool, players_skeleton, false);
         CFG_ITEM(float, players_skeleton_thickness, 1.f);
         CFG_ITEM(bool, players_skeleton_fingers, false);
         CFG_ITEM(bool, players_skeleton_joints, false);
         CFG_ITEM(ImColor, players_skeleton_color, ImColor(255, 255, 255, 255));
 
-        // информация о здоровье
         CFG_ITEM(bool, players_health, true);
         CFG_ITEM(ImColor, players_health_color, ImColor(255, 145, 45, 255));
 
-        // информация об имени
         CFG_ITEM(bool, players_name, true);
         CFG_ITEM(int, players_name_case, 0); // 0 = normal, 1 = upper, 2 = lower
         CFG_ITEM(int, players_name_font, 0);
         CFG_ITEM(int, players_name_style, 1);
         CFG_ITEM(ImColor, players_name_color, ImColor(255, 255, 255, 255));
 
-        // дистанция до цели
         CFG_ITEM(bool, players_distance, true);
         CFG_ITEM(int, players_distance_case, 0);
         CFG_ITEM(int, players_distance_font, 0);
         CFG_ITEM(int, players_distance_style, 1);
         CFG_ITEM(ImColor, players_distance_color, ImColor(200, 200, 200, 255));
 
-        // информация об оружии
         CFG_ITEM(bool, players_weapon, false);
         CFG_ITEM(int, players_weapon_type, 0); // 0 = text, 1 = icons, 2 = flat
         CFG_ITEM(int, players_weapon_case, 0);
@@ -447,6 +441,20 @@ namespace config {
         CFG_ITEM(int, players_flags_team_pos, 3);
         CFG_ITEM(ImColor, players_flags_color, ImColor(200, 200, 200, 255));
 
+        CFG_ITEM(bool, players_snapline, false);
+        CFG_ITEM(int, players_snapline_origin, 1); // 0 = top, 1 = center, 2 = bottom
+        CFG_ITEM(ImColor, players_snapline_color, ImColor(255, 255, 255, 255));
+
+        CFG_ITEM(bool, players_view_direction, false);
+        CFG_ITEM(ImColor, players_view_direction_color, ImColor(255, 255, 255, 255));
+
+        CFG_ITEM(bool, players_oof_arrows, false);
+        CFG_ITEM(ImColor, players_oof_arrows_color, ImColor(255, 0, 0, 255));
+        CFG_ITEM(bool, players_oof_arrows_rainbow, false);
+        CFG_ITEM(int, players_oof_arrows_style, 0); // 0 = flat, 1 = cursor, 2 = curved
+        CFG_ITEM(float, players_oof_arrows_radius, 150.f);
+        CFG_ITEM(bool, players_oof_arrows_pulse, false);
+
         // настройки превью (позиции: 0 = free, 1 = top, 2 = bot, 3 = left, 4 = right)
         CFG_ITEM(float, prev_name_ox, 0.f); CFG_ITEM(float, prev_name_oy, -4.f); CFG_ITEM(float, prev_name_sz, 11.f); CFG_ITEM(int, prev_name_align, 0);
         CFG_ITEM(float, prev_health_ox, -4.f); CFG_ITEM(float, prev_health_oy, 0.f); CFG_ITEM(float, prev_health_sz, 3.f); CFG_ITEM(int, prev_health_align, 2);
@@ -461,6 +469,20 @@ namespace config {
         CFG_ITEM(float, prev_flag_sleep_ox, 0.f); CFG_ITEM(float, prev_flag_sleep_oy, 70.f); CFG_ITEM(float, prev_flag_sleep_sz, 10.f); CFG_ITEM(int, prev_flag_sleep_case, 1); CFG_ITEM(int, prev_flag_sleep_font, 0); CFG_ITEM(int, prev_flag_sleep_style, 1); CFG_ITEM(ImColor, prev_flag_sleep_color, ImColor(200, 200, 200, 255));
         CFG_ITEM(float, prev_flag_team_ox, 0.f); CFG_ITEM(float, prev_flag_team_oy, 84.f); CFG_ITEM(float, prev_flag_team_sz, 10.f); CFG_ITEM(int, prev_flag_team_case, 1); CFG_ITEM(int, prev_flag_team_font, 0); CFG_ITEM(int, prev_flag_team_style, 1); CFG_ITEM(ImColor, prev_flag_team_color, ImColor(200, 200, 200, 255));
 
+    }
+
+    namespace shared_esp {
+        CFG_ITEM(bool, enabled, false);
+        CFG_ITEM(bool, box,      true);
+        CFG_ITEM(bool, name,     true);
+        CFG_ITEM(bool, distance, true);
+        CFG_ITEM(bool, health,   true);
+        CFG_ITEM(bool, snapline, false);
+        CFG_ITEM(ImColor, box_color,      ImColor(255, 100, 100, 255));
+        CFG_ITEM(ImColor, name_color,     ImColor(255, 100, 100, 255));
+        CFG_ITEM(ImColor, distance_color, ImColor(200, 200, 200, 255));
+        CFG_ITEM(ImColor, health_color,   ImColor(255, 100, 100, 255));
+        CFG_ITEM(ImColor, snapline_color, ImColor(255, 100, 100, 255));
     }
     namespace globals {
         inline std::string settings_default_config = "Default";

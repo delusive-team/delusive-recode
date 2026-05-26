@@ -75,6 +75,7 @@
     <ClInclude Include="framework\settings\variables.h" />
     <ClInclude Include="game\enums\enums.h" />
     <ClInclude Include="game\features\esp\esp.h" />
+    <ClInclude Include="game\features\esp\shared\shared.h" />
     <ClInclude Include="game\features\misc\misc.h" />
     <ClInclude Include="game\features\misc\violation.h" />
     <ClInclude Include="game\features\visuals\visuals.h" />
