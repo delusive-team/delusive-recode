@@ -122,8 +122,8 @@ public:
     void render_keybinds_list();
 
     void render_reload_indicator();
-
     void render_flyhack_indicator();
+    void render_traps_indicator();
 
     void watermark();
 

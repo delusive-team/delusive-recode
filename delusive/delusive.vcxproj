@@ -77,10 +77,12 @@
     <ClInclude Include="game\features\esp\esp.h" />
     <ClInclude Include="game\features\misc\misc.h" />
     <ClInclude Include="game\features\misc\violation.h" />
+    <ClInclude Include="game\features\visuals\visuals.h" />
     <ClInclude Include="game\hooks\hooks.h" />
     <ClInclude Include="game\hooks\impl\base_melee.h" />
     <ClInclude Include="game\hooks\impl\base_player.h" />
     <ClInclude Include="game\hooks\impl\client_late_update.h" />
+    <ClInclude Include="game\hooks\impl\client_on_disconnected.h" />
     <ClInclude Include="game\hooks\impl\item_icon.h" />
     <ClInclude Include="game\hooks\impl\steam_platform.h" />
     <ClInclude Include="game\hooks\impl\tod_sky.h" />

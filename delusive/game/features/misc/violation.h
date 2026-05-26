@@ -132,8 +132,6 @@ namespace violation {
             return;
         }
 
-        // Покадровая дельта позиции (не от lastSentTick — он обновляется редко
-        // и даёт накопленную дельту за несколько фреймов, что завышает счётчик)
         if (!g_prev_pos_valid) {
             g_prev_pos       = pos;
             g_prev_pos_valid = true;
@@ -147,7 +145,6 @@ namespace violation {
         float frame_dy = frame_delta.y;
         float frame_dh = frame_delta.length_2d();
 
-        // Игрок падает вниз — легитимное падение, не трекаем
         if (frame_dy < cfg::k_fall_threshold * dt) {
             fade_violations(dt);
             g_indicator_pct = std::clamp(g_violation_level, 0.f, 100.f);
@@ -157,8 +154,6 @@ namespace violation {
         if (frame_dy > 0.f)
             g_dist_vertical += frame_dy;
 
-        // Горизонталь трекаем ТОЛЬКО когда игрок идёт вверх (frame_dy >= 0).
-        // Если Y убывает — игрок падает, горизонтальное движение легитимно.
         if (frame_dh > 0.f && frame_dy >= 0.f)
             g_dist_horizontal += frame_dh;
 
@@ -197,4 +192,4 @@ namespace violation {
         g_indicator_pct = std::clamp(g_violation_level, 0.f, 100.f);
     }
 
-} // namespace violation
+}

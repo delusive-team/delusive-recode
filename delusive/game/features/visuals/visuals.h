@@ -99,14 +99,9 @@ namespace visuals {
     }
 
     inline void apply_custom_color(uintptr_t n_base, uintptr_t d_base, uint32_t offset,
-                                   bool active, bool rainbow, ImVec4 target,
+                                   bool active, ImVec4 target,
                                    ImVec4 bk_night, ImVec4 bk_day) {
         if (active) {
-            if (rainbow) {
-                float r, g, b;
-                ImGui::ColorConvertHSVtoRGB(fmodf(ImGui::GetTime() * 0.3f, 1.0f), 1.0f, 1.0f, r, g, b);
-                target = ImVec4(r, g, b, target.w);
-            }
             set_color(n_base, offset, target);
             set_color(d_base, offset, target);
         } else {
@@ -337,25 +332,21 @@ namespace visuals {
 
         apply_custom_color(n_base, d_base, 0x28,
             worlds::sky_color_changer.value && !unl,
-            worlds::sky_color_changer_rainbow.value,
             worlds::sky_color_changer_color.value,
             sky_backup.night_sky_color, sky_backup.day_sky_color);
 
         apply_custom_color(n_base, d_base, 0x30,
             worlds::cloud_color_changer.value && !unl,
-            worlds::cloud_color_changer_rainbow.value,
             worlds::cloud_color_changer_color.value,
             sky_backup.night_cloud_color, sky_backup.day_cloud_color);
 
         apply_custom_color(n_base, d_base, 0x38,
             worlds::fog_color_changer.value && !unl,
-            worlds::fog_color_changer_rainbow.value,
             worlds::fog_color_changer_color.value,
             sky_backup.night_fog_color, sky_backup.day_fog_color);
 
         apply_custom_color(n_base, d_base, 0x40,
             worlds::world_color_changer.value && !unl,
-            worlds::world_color_changer_rainbow.value,
             worlds::world_color_changer_color.value,
             sky_backup.night_world_color, sky_backup.day_world_color);
 

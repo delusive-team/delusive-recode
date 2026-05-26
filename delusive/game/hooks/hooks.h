@@ -219,7 +219,7 @@ inline hooks_t g_hooks;
 #include "impl/client_late_update.h"
 #include "impl/base_melee.h"
 #include "impl/steam_platform.h"
-#include "impl/tod_sky.h"
+#include "impl/client_on_disconnected.h"
 
 namespace hooks {
     inline void initialize() {
@@ -229,8 +229,9 @@ namespace hooks {
         HOOK_ADD(_(""), _("PlayerWalkMovement"), _("ClientInput"), base_player::player_walk_movement_client_input);
         HOOK_ADD_DIRECT_N(_(""), _("Client"), _("LateUpdate"), 0, client::late_update);
         HOOK_ADD(_(""), _("BaseMelee"), _("DoAttack"), base_melee::do_attack);
+        HOOK_ADD(_(""), _("BaseMelee"), _("ProcessAttack"), base_melee::process_attack);
         HOOK_ADD(_("Rust.Platform.Steam"), _("SteamPlatform"), _("Update"), steam_platform::steam_platform_update);
-        HOOK_ADD_DIRECT_N(_(""), _("TOD_Sky"), _("LateUpdate"), 0, tod_sky::late_update);
+        HOOK_ADD_DIRECT_N(_("Network"), _("Client"), _("OnDisconnected"), 1, client::on_disconnected);
     }
 
     inline void detach() {
@@ -242,7 +243,8 @@ namespace hooks {
         HOOK_REMOVE(_(""), _("PlayerWalkMovement"), _("ClientInput"), base_player::player_walk_movement_client_input);
         HOOK_REMOVE_DIRECT_N(_(""), _("Client"), _("LateUpdate"), 0, client::late_update);
         HOOK_REMOVE(_(""), _("BaseMelee"), _("DoAttack"), base_melee::do_attack);
+        HOOK_REMOVE(_(""), _("BaseMelee"), _("ProcessAttack"), base_melee::process_attack);
         HOOK_REMOVE(_("Rust.Platform.Steam"), _("SteamPlatform"), _("Update"), steam_platform::steam_platform_update);
-        HOOK_REMOVE_DIRECT_N(_(""), _("TOD_Sky"), _("LateUpdate"), 0, tod_sky::late_update);
+        HOOK_REMOVE_DIRECT_N(_("Network"), _("Client"), _("OnDisconnected"), 1, client::on_disconnected);
     }
 }

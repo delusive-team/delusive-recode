@@ -501,6 +501,8 @@ namespace config {
         namespace automatic {
             CFG_ITEM(bool, misc_automatic_auto_reload, false);
             CFG_ITEM(bool, misc_automatic_auto_heal, false);
+            CFG_ITEM(bool, ore_assist_farm, false);
+            CFG_ITEM(bool, tree_assist_farm, false);
         }
         namespace movement {
             CFG_ITEM(bool, disable_melee_slow_down, false);
@@ -521,6 +523,20 @@ namespace config {
             CFG_ITEM(bool, exploits_anti_fly_hack_kick, false);
             CFG_ITEM(bool, exploits_extended_melee, false);
             CFG_ITEM(bool, exploits_name_spoofer, false);
+            CFG_ITEM(bool, misc_modify_can_attack, false);
+            CFG_ITEM(bool, exploits_unlock_aim_on_jugger_set, false);
+            CFG_ITEM(bool, exploits_can_attack_in_vehicles, false);
+
+            CFG_ITEM(bool, exploits_traps_exploit, false);
+            CFG_ITEM(int, exploits_traps_exploit_key, 0);
+            CFG_ITEM(int, exploits_traps_exploit_keymode, 0);
+            CFG_ITEM(float, exploits_traps_exploit_amount, 0.5f);
+
+            CFG_ITEM(bool, exploits_fake_lag, false);
+            CFG_ITEM(float, exploits_fake_lag_cooldown, 0.5f);
+            CFG_ITEM(float, exploits_fake_lag_duration, 0.2f);
+            CFG_ITEM(float, exploits_fake_lag_min, 0.1f);
+            CFG_ITEM(float, exploits_fake_lag_max, 0.3f);
         }
     }
 
@@ -587,19 +603,15 @@ namespace config {
             CFG_ITEM(float, sky_night_shadow_strength_value, 1.0f);
 
             CFG_ITEM(bool, sky_color_changer, false);
-            CFG_ITEM(bool, sky_color_changer_rainbow, false);
             CFG_ITEM(ImColor, sky_color_changer_color, ImColor(255, 255, 255, 255));
 
             CFG_ITEM(bool, cloud_color_changer, false);
-            CFG_ITEM(bool, cloud_color_changer_rainbow, false);
             CFG_ITEM(ImColor, cloud_color_changer_color, ImColor(255, 255, 255, 255));
 
             CFG_ITEM(bool, fog_color_changer, false);
-            CFG_ITEM(bool, fog_color_changer_rainbow, false);
             CFG_ITEM(ImColor, fog_color_changer_color, ImColor(255, 255, 255, 255));
 
             CFG_ITEM(bool, world_color_changer, false);
-            CFG_ITEM(bool, world_color_changer_rainbow, false);
             CFG_ITEM(ImColor, world_color_changer_color, ImColor(255, 255, 255, 255));
         }
         namespace weather {
@@ -633,6 +645,8 @@ namespace config {
         namespace interfaces {
             CFG_ITEM(float, anti_fly_hack_kick_indi_X, 10.f);
             CFG_ITEM(float, anti_fly_hack_kick_indi_Y, 300.f);
+            CFG_ITEM(float, traps_indicator_X, 10.f);
+            CFG_ITEM(float, traps_indicator_Y, 360.f);
         }
     }
 

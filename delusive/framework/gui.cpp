@@ -742,44 +742,50 @@ void c_gui::render()
 										static bool enabled = true; static int key = 0; static int mode = 0;
 										gui->checkbox("Enabled", &enabled, &key, &mode);
 
-										static int fov = 90;
-										gui->slider_int("Field Of View", &fov, 0, 100);
+										if (enabled) {
+											static int fov = 90;
+											gui->slider_int("Field Of View", &fov, 0, 100);
 
-										static int fov_type = 0;
-										const char* fov_type_items[2] = { "Static", "Dynamic" };
-										gui->dropdown("FOV Type", &fov_type, fov_type_items, IM_ARRAYSIZE(fov_type_items), true);
+											static int fov_type = 0;
+											const char* fov_type_items[2] = { "Static", "Dynamic" };
+											gui->dropdown("FOV Type", &fov_type, fov_type_items, IM_ARRAYSIZE(fov_type_items), true);
 
-										static float horizontal = 30.f;
-										static float vertical = 12.f;
-										gui->slider_float("Horizontal Smoothing", &horizontal, 0, 100);
-										gui->slider_float("Vertical Smoothing", &vertical, 0, 100);
+											static float horizontal = 30.f;
+											static float vertical = 12.f;
+											gui->slider_float("Horizontal Smoothing", &horizontal, 0, 100);
+											gui->slider_float("Vertical Smoothing", &vertical, 0, 100);
 
-										static std::vector<int> checks = { 1, 1, 1 };
-										const char* checks_items[3] = { "Team Check", "Alive Check", "Enemy Check" };
-										gui->multi_dropdown("Checks", checks, checks_items, IM_ARRAYSIZE(checks_items));
+											static std::vector<int> checks = { 1, 1, 1 };
+											const char* checks_items[3] = { "Team Check", "Alive Check", "Enemy Check" };
+											gui->multi_dropdown("Checks", checks, checks_items, IM_ARRAYSIZE(checks_items));
 
-										static std::vector<int> hitboxes = { 1, 0, 1, 0, 1, 0 };
-										const char* hitboxes_items[6] = { "Head", "Neck", "Stomach", "Body", "Arms", "Legs" };
-										gui->multi_dropdown("Hitboxes", hitboxes, hitboxes_items, IM_ARRAYSIZE(hitboxes_items));
+											static std::vector<int> hitboxes = { 1, 0, 1, 0, 1, 0 };
+											const char* hitboxes_items[6] = { "Head", "Neck", "Stomach", "Body", "Arms", "Legs" };
+											gui->multi_dropdown("Hitboxes", hitboxes, hitboxes_items, IM_ARRAYSIZE(hitboxes_items));
 
-										static bool randomize = false;
-										gui->checkbox("Randomize Position", &randomize);
+											static bool randomize = false;
+											gui->checkbox("Randomize Position", &randomize);
 
-										static int hitscan_type = 0;
-										gui->dropdown("Hitscan Type", &hitscan_type, fov_type_items, IM_ARRAYSIZE(fov_type_items));
+											static int hitscan_type = 0;
+											gui->dropdown("Hitscan Type", &hitscan_type, fov_type_items, IM_ARRAYSIZE(fov_type_items));
 
-										static bool readjustment = false; static int rkey = 0; static int rmode = 0;
-										gui->checkbox("Readjustment", &readjustment, &rkey, &rmode);
+											static bool readjustment = false; static int rkey = 0; static int rmode = 0;
+											gui->checkbox("Readjustment", &readjustment, &rkey, &rmode);
 
-										static bool deadzone = true;
-										gui->checkbox("Dead Zone", &deadzone);
-										static float dzone = 44.f;
-										gui->slider_float("Dead Zone Size", &dzone, 0, 100, true);
+											static bool deadzone = true;
+											gui->checkbox("Dead Zone", &deadzone);
+											if (deadzone) {
+												static float dzone = 44.f;
+												gui->slider_float("Dead Zone Size", &dzone, 0, 100, true);
+											}
 
-										static bool stutter = true;
-										gui->checkbox("Stutter", &stutter);
-										static float stslider = 25.f;
-										gui->slider_float("Stutter Amount", &stslider, 0, 100, true, "%.1ft");
+											static bool stutter = true;
+											gui->checkbox("Stutter", &stutter);
+											if (stutter) {
+												static float stslider = 25.f;
+												gui->slider_float("Stutter Amount", &stslider, 0, 100, true, "%.1ft");
+											}
+										}
 									}
 									gui->end_child();
 
@@ -796,21 +802,23 @@ void c_gui::render()
 										static bool t_enabled = true; static int t_key = 0; static int t_mode = 0;
 										gui->checkbox("Enabled", &t_enabled, &t_key, &t_mode);
 
-										static int delay = 15;
-										static int interval = 75;
-										gui->slider_int("Delay", &delay, 0, 500, false, "%dms");
-										gui->slider_int("Interval", &interval, 0, 1000, false, "%dms");
+										if (t_enabled) {
+											static int delay = 15;
+											static int interval = 75;
+											gui->slider_int("Delay", &delay, 0, 500, false, "%dms");
+											gui->slider_int("Interval", &interval, 0, 1000, false, "%dms");
 
-										static std::vector<int> t_checks = { 1, 1, 1 };
-										const char* t_checks_items[3] = { "Team Check", "Alive Check", "Enemy Check" };
-										gui->multi_dropdown("Checks", t_checks, t_checks_items, IM_ARRAYSIZE(t_checks_items));
+											static std::vector<int> t_checks = { 1, 1, 1 };
+											const char* t_checks_items[3] = { "Team Check", "Alive Check", "Enemy Check" };
+											gui->multi_dropdown("Checks", t_checks, t_checks_items, IM_ARRAYSIZE(t_checks_items));
 
-										static std::vector<int> t_hitboxes = { 1, 0, 1, 0, 1, 0 };
-										const char* t_hitboxes_items[6] = { "Head", "Neck", "Stomach", "Body", "Arms", "Legs" };
-										gui->multi_dropdown("Hitboxes", t_hitboxes, t_hitboxes_items, IM_ARRAYSIZE(t_hitboxes_items));
+											static std::vector<int> t_hitboxes = { 1, 0, 1, 0, 1, 0 };
+											const char* t_hitboxes_items[6] = { "Head", "Neck", "Stomach", "Body", "Arms", "Legs" };
+											gui->multi_dropdown("Hitboxes", t_hitboxes, t_hitboxes_items, IM_ARRAYSIZE(t_hitboxes_items));
 
-										static bool r_adj = false; static int r_key = 0; static int r_mode = 0;
-										gui->checkbox("Readjustment", &r_adj, &r_key, &r_mode);
+											static bool r_adj = false; static int r_key = 0; static int r_mode = 0;
+											gui->checkbox("Readjustment", &r_adj, &r_key, &r_mode);
+										}
 									}
 									gui->end_child();
 
@@ -818,8 +826,10 @@ void c_gui::render()
 									{
 										static bool cursor = true;
 										gui->checkbox("Cursor Offset", &cursor);
-										static int cx = 50; gui->slider_int("Offset X", &cx, 0, 100, true, "%dpx");
-										static int cy = 50; gui->slider_int("Offset Y", &cy, 0, 100, true, "%dpx");
+										if (cursor) {
+											static int cx = 50; gui->slider_int("Offset X", &cx, 0, 100, true, "%dpx");
+											static int cy = 50; gui->slider_int("Offset Y", &cy, 0, 100, true, "%dpx");
+										}
 									}
 									gui->end_child();
 
@@ -838,47 +848,61 @@ void c_gui::render()
 									{
 										// Боксы
 										gui->checkbox("Bounding Box", &config::esp::players_box.value);
-										gui->sameline();
-										gui->label_color_edit("##box_clr", (float*)&config::esp::players_box_color.value.Value);
+										if (config::esp::players_box.value) {
+											gui->sameline();
+											gui->label_color_edit("##box_clr", (float*)&config::esp::players_box_color.value.Value);
 
-										const char* box_types[] = { "Normal", "Corner" };
-										gui->dropdown("Box Type", &config::esp::players_box_type.value, box_types, 2);
+											const char* box_types[] = { "Normal", "Corner" };
+											gui->dropdown("Box Type", &config::esp::players_box_type.value, box_types, 2);
 
-										gui->checkbox("Box Fill", &config::esp::players_box_fill.value);
-										gui->sameline();
-										gui->label_color_edit("##box_fill_clr", (float*)&config::esp::players_box_fill_color.value.Value);
+											gui->checkbox("Box Fill", &config::esp::players_box_fill.value);
+											gui->sameline();
+											gui->label_color_edit("##box_fill_clr", (float*)&config::esp::players_box_fill_color.value.Value);
+										}
 
 										// Здоровье и скелет
 										gui->checkbox("Health Bar", &config::esp::players_health.value);
-										gui->sameline();
-										gui->label_color_edit("##hp_clr", (float*)&config::esp::players_health_color.value.Value);
-										gui->checkbox("Health Text", &config::esp::players_health_text.value);
+										if (config::esp::players_health.value) {
+											gui->sameline();
+											gui->label_color_edit("##hp_clr", (float*)&config::esp::players_health_color.value.Value);
+											gui->checkbox("Health Text", &config::esp::players_health_text.value);
+										}
 
 										gui->checkbox("Skeleton", &config::esp::players_skeleton.value);
-										gui->sameline();
-										gui->label_color_edit("##skel_clr", (float*)&config::esp::players_skeleton_color.value.Value);
+										if (config::esp::players_skeleton.value) {
+											gui->sameline();
+											gui->label_color_edit("##skel_clr", (float*)&config::esp::players_skeleton_color.value.Value);
+										}
 
 										// Текстовая информация
 										gui->checkbox("Name", &config::esp::players_name.value);
-										gui->sameline();
-										gui->label_color_edit("##name_clr", (float*)&config::esp::players_name_color.value.Value);
+										if (config::esp::players_name.value) {
+											gui->sameline();
+											gui->label_color_edit("##name_clr", (float*)&config::esp::players_name_color.value.Value);
 
-										const char* text_cases[] = { "Normal", "Upper", "Lower" };
-										gui->dropdown("Name Case", &config::esp::players_name_case.value, text_cases, 3);
+											const char* text_cases[] = { "Normal", "Upper", "Lower" };
+											gui->dropdown("Name Case", &config::esp::players_name_case.value, text_cases, 3);
+										}
 
 										gui->checkbox("Distance", &config::esp::players_distance.value);
-										gui->sameline();
-										gui->label_color_edit("##dist_clr", (float*)&config::esp::players_distance_color.value.Value);
-										gui->dropdown("Distance Case", &config::esp::players_distance_case.value, text_cases, 3);
+										if (config::esp::players_distance.value) {
+											gui->sameline();
+											gui->label_color_edit("##dist_clr", (float*)&config::esp::players_distance_color.value.Value);
+											const char* text_cases[] = { "Normal", "Upper", "Lower" };
+											gui->dropdown("Distance Case", &config::esp::players_distance_case.value, text_cases, 3);
+										}
 
 										// Оружие
 										gui->checkbox("Weapon", &config::esp::players_weapon.value);
-										gui->sameline();
-										gui->label_color_edit("##weap_clr", (float*)&config::esp::players_weapon_color.value.Value);
+										if (config::esp::players_weapon.value) {
+											gui->sameline();
+											gui->label_color_edit("##weap_clr", (float*)&config::esp::players_weapon_color.value.Value);
 
-										const char* weapon_types[] = { "Text", "Icons", "Flat Icons" };
-										gui->dropdown("Weapon Type", &config::esp::players_weapon_type.value, weapon_types, 3);
-										gui->dropdown("Weapon Case", &config::esp::players_weapon_case.value, text_cases, 3);
+											const char* weapon_types[] = { "Text", "Icons", "Flat Icons" };
+											gui->dropdown("Weapon Type", &config::esp::players_weapon_type.value, weapon_types, 3);
+											const char* text_cases[] = { "Normal", "Upper", "Lower" };
+											gui->dropdown("Weapon Case", &config::esp::players_weapon_case.value, text_cases, 3);
+										}
 									}
 									gui->end_child();
 								}
@@ -902,8 +926,10 @@ void c_gui::render()
 
 										// Детализация скелета
 										gui->slider_float("Skeleton Thickness", &config::esp::players_skeleton_thickness.value, 1.f, 5.f, false, "%.1f");
-										gui->checkbox("Skeleton Fingers", &config::esp::players_skeleton_fingers.value);
-										gui->checkbox("Skeleton Joints", &config::esp::players_skeleton_joints.value);
+										if (config::esp::players_skeleton.value) {
+											gui->checkbox("Skeleton Fingers", &config::esp::players_skeleton_fingers.value);
+											gui->checkbox("Skeleton Joints", &config::esp::players_skeleton_joints.value);
+										}
 
 										// Флаги через мульти-дропдаун
 										gui->checkbox("Status Flags", &config::esp::players_flags.value);
@@ -928,32 +954,39 @@ void c_gui::render()
 							// ── Visuals ───────────────────────────────────────────────
 							if (subtabs == 2)
 							{
-								const float h_total = ImGui::GetWindowHeight() - elements->content.padding.y * 2.f - elements->content.spacing.y * 2.f - var->window.titlebar;
 								const float sp = elements->content.spacing.y;
 
-								// Left column: Environment (scrollable) + Layers (fixed)
-								const float h_layers_child = 80.f * dpi_scale;
-								const float h_env_child = h_total - h_layers_child - sp;
+								const float h_env_child = ImGui::GetContentRegionAvail().y * 0.78f;
+								const float h_weather_child = ImGui::GetContentRegionAvail().y * 0.35f;
 
+
+								// ════════════════════════════════════════════
+								//  LEFT COLUMN
+								// ════════════════════════════════════════════
 								gui->begin_group();
 								{
-									// ── Environment (scrollable) ──────────────────────────
+									// ── World Environment ────────────────────
 									gui->begin_child("World Environment", 2, 0, ImVec2(0, h_env_child));
 									{
-										// Time
+										// ── Time ────────────────────────────
 										gui->checkbox("Time Changer", &config::visuals::worlds::visuals_time_change_time.value);
 										if (config::visuals::worlds::visuals_time_change_time.value)
 											gui->slider_float("Time Value", &config::visuals::worlds::visuals_time_change_time_value.value, 0.0f, 24.0f, false, "%.1f");
 
-										// Night & Cave brightness
+										ImGui::Separator();
+
+										// ── Brightness ──────────────────────
 										gui->checkbox("Bright Night", &config::visuals::worlds::visuals_sky_bright_night.value);
-										if (config::visuals::worlds::visuals_sky_bright_night.value) {
+										if (config::visuals::worlds::visuals_sky_bright_night.value)
+										{
 											gui->slider_float("Ambient Mult", &config::visuals::worlds::visuals_sky_bright_night_ambient_multiplier.value, 0.f, 10.f, false, "%.1f");
 											gui->slider_float("Reflect Mult", &config::visuals::worlds::visuals_sky_bright_night_reflection_multiplier.value, 0.f, 10.f, false, "%.1f");
 										}
 										gui->checkbox("Bright Cave", &config::visuals::worlds::visuals_sky_bright_cave.value);
 
-										// Atmosphere
+										ImGui::Separator();
+
+										// ── Atmosphere ───────────────────────
 										gui->checkbox("Atmosphere Contrast", &config::visuals::worlds::atmosphere_contrast.value);
 										if (config::visuals::worlds::atmosphere_contrast.value)
 											gui->slider_float("Contrast", &config::visuals::worlds::atmosphere_contrast_value.value, 0.f, 5.f, false, "%.1f");
@@ -962,7 +995,9 @@ void c_gui::render()
 										if (config::visuals::worlds::rayleigh_multiplier.value)
 											gui->slider_float("Rayleigh", &config::visuals::worlds::rayleigh_multiplier_value.value, 0.0f, 10.0f, false, "%.1f");
 
-										// Orbit
+										ImGui::Separator();
+
+										// ── Orbit ────────────────────────────
 										gui->checkbox("Latitude (Orbit)", &config::visuals::worlds::custom_latitude.value);
 										if (config::visuals::worlds::custom_latitude.value)
 											gui->slider_float("Latitude", &config::visuals::worlds::custom_latitude_value.value, -90.f, 90.f, false, "%.1f");
@@ -971,106 +1006,145 @@ void c_gui::render()
 										if (config::visuals::worlds::custom_longitude.value)
 											gui->slider_float("Longitude", &config::visuals::worlds::custom_longitude_value.value, -180.f, 180.f, false, "%.1f");
 
-										// Light & Shadow
+										ImGui::Separator();
+
+										// ── Sky Light & Shadow ───────────────
 										gui->checkbox("Sky Light Intensity", &config::visuals::worlds::sky_light_intensity.value);
-										if (config::visuals::worlds::sky_light_intensity.value) {
+										if (config::visuals::worlds::sky_light_intensity.value)
+										{
 											gui->slider_float("Day Light", &config::visuals::worlds::sky_day_light_intensity_value.value, 0.0f, 10.0f, false, "%.1f");
 											gui->slider_float("Night Light", &config::visuals::worlds::sky_night_light_intensity_value.value, 0.0f, 10.0f, false, "%.1f");
 										}
+
 										gui->checkbox("Sky Shadow Strength", &config::visuals::worlds::sky_shadow_strength.value);
-										if (config::visuals::worlds::sky_shadow_strength.value) {
+										if (config::visuals::worlds::sky_shadow_strength.value)
+										{
 											gui->slider_float("Day Shadow", &config::visuals::worlds::sky_day_shadow_strength_value.value, 0.0f, 1.0f, false, "%.2f");
 											gui->slider_float("Night Shadow", &config::visuals::worlds::sky_night_shadow_strength_value.value, 0.0f, 1.0f, false, "%.2f");
 										}
 
-										// Color tints
-										auto draw_color_option = [&](const char* label, bool* active, bool* rainbow, ImColor* color_item) {
-											gui->checkbox(label, active);
-											if (*active) {
-												ImGui::SameLine(200.f * dpi_scale);
-												gui->checkbox(std::string(_("Rainbow ")) + label, rainbow);
-												ImGui::SameLine(340.f * dpi_scale);
-												float col[4] = { color_item->Value.x, color_item->Value.y, color_item->Value.z, color_item->Value.w };
-												if (gui->color_edit(std::string(label) + _(" Color"), col, true))
-													*color_item = ImColor(col[0], col[1], col[2], col[3]);
-											}
-											};
-										draw_color_option("Sky Tint", &config::visuals::worlds::sky_color_changer.value, &config::visuals::worlds::sky_color_changer_rainbow.value, &config::visuals::worlds::sky_color_changer_color.value);
-										draw_color_option("Cloud Tint", &config::visuals::worlds::cloud_color_changer.value, &config::visuals::worlds::cloud_color_changer_rainbow.value, &config::visuals::worlds::cloud_color_changer_color.value);
-										draw_color_option("Fog Tint", &config::visuals::worlds::fog_color_changer.value, &config::visuals::worlds::fog_color_changer_rainbow.value, &config::visuals::worlds::fog_color_changer_color.value);
-										draw_color_option("World Tint", &config::visuals::worlds::world_color_changer.value, &config::visuals::worlds::world_color_changer_rainbow.value, &config::visuals::worlds::world_color_changer_color.value);
+										ImGui::Separator();
 
-										// Sun  (checkbox | slider on same line when active)
-										gui->checkbox("Override Sun", &config::visuals::worlds::sun_size_override.value);
-										if (config::visuals::worlds::sun_size_override.value) {
-											ImGui::SameLine(180.f * dpi_scale);
-											gui->slider_float("Sun Size", &config::visuals::worlds::sun_size.value, 0.1f, 50.f, false, "%.1f");
-										}
-										gui->checkbox("Sun Brightness", &config::visuals::worlds::sun_brightness_override.value);
-										if (config::visuals::worlds::sun_brightness_override.value) {
-											ImGui::SameLine(180.f * dpi_scale);
-											gui->slider_float("Sun Bright", &config::visuals::worlds::sun_brightness.value, 0.1f, 50.f, false, "%.1f");
+										gui->checkbox("Sky Tint", &config::visuals::worlds::sky_color_changer.value);
+										if (config::visuals::worlds::sky_color_changer.value)
+										{
+											gui->sameline();
+											float col[4] = { config::visuals::worlds::sky_color_changer_color.value.Value.x, config::visuals::worlds::sky_color_changer_color.value.Value.y, config::visuals::worlds::sky_color_changer_color.value.Value.z, config::visuals::worlds::sky_color_changer_color.value.Value.w };
+											if (gui->color_edit(_("Sky Tint Color"), col, true))
+												config::visuals::worlds::sky_color_changer_color.value = ImColor(col[0], col[1], col[2], col[3]);
 										}
 
-										// Moon  (same compact style)
+										// Cloud Tint
+										gui->checkbox("Cloud Tint", &config::visuals::worlds::cloud_color_changer.value);
+										if (config::visuals::worlds::cloud_color_changer.value)
+										{
+											gui->sameline();
+											float col[4] = { config::visuals::worlds::cloud_color_changer_color.value.Value.x, config::visuals::worlds::cloud_color_changer_color.value.Value.y, config::visuals::worlds::cloud_color_changer_color.value.Value.z, config::visuals::worlds::cloud_color_changer_color.value.Value.w };
+											if (gui->color_edit(_("Cloud Tint Color"), col, true))
+												config::visuals::worlds::cloud_color_changer_color.value = ImColor(col[0], col[1], col[2], col[3]);
+										}
+
+										// Fog Tint
+										gui->checkbox("Fog Tint", &config::visuals::worlds::fog_color_changer.value);
+										if (config::visuals::worlds::fog_color_changer.value)
+										{
+											gui->sameline();
+											float col[4] = { config::visuals::worlds::fog_color_changer_color.value.Value.x, config::visuals::worlds::fog_color_changer_color.value.Value.y, config::visuals::worlds::fog_color_changer_color.value.Value.z, config::visuals::worlds::fog_color_changer_color.value.Value.w };
+											if (gui->color_edit(_("Fog Tint Color"), col, true))
+												config::visuals::worlds::fog_color_changer_color.value = ImColor(col[0], col[1], col[2], col[3]);
+										}
+
+										// World Tint
+										gui->checkbox("World Tint", &config::visuals::worlds::world_color_changer.value);
+										if (config::visuals::worlds::world_color_changer.value)
+										{
+											gui->sameline();
+											float col[4] = { config::visuals::worlds::world_color_changer_color.value.Value.x, config::visuals::worlds::world_color_changer_color.value.Value.y, config::visuals::worlds::world_color_changer_color.value.Value.z, config::visuals::worlds::world_color_changer_color.value.Value.w };
+											if (gui->color_edit(_("World Tint Color"), col, true))
+												config::visuals::worlds::world_color_changer_color.value = ImColor(col[0], col[1], col[2], col[3]);
+										}
+
+										ImGui::Separator();
+
+										// ── Sun (hidden if No Sun is enabled) ─
+										if (!config::visuals::weather::removals::visuals_weather_no_sun.value)
+										{
+											gui->checkbox("Override Sun", &config::visuals::worlds::sun_size_override.value);
+											if (config::visuals::worlds::sun_size_override.value)
+												gui->slider_float("Sun Size", &config::visuals::worlds::sun_size.value, 0.1f, 50.f, false, "%.1f");
+
+											gui->checkbox("Sun Brightness", &config::visuals::worlds::sun_brightness_override.value);
+											if (config::visuals::worlds::sun_brightness_override.value)
+												gui->slider_float("Sun Bright", &config::visuals::worlds::sun_brightness.value, 0.1f, 50.f, false, "%.1f");
+
+											ImGui::Separator();
+										}
+
+										// ── Moon ─────────────────────────────
 										gui->checkbox("Override Moon", &config::visuals::worlds::moon_size_override.value);
-										if (config::visuals::worlds::moon_size_override.value) {
-											ImGui::SameLine(180.f * dpi_scale);
+										if (config::visuals::worlds::moon_size_override.value)
 											gui->slider_float("Moon Size", &config::visuals::worlds::moon_size.value, 0.1f, 50.f, false, "%.1f");
-										}
+
 										gui->checkbox("Moon Brightness", &config::visuals::worlds::moon_brightness_override.value);
-										if (config::visuals::worlds::moon_brightness_override.value) {
-											ImGui::SameLine(180.f * dpi_scale);
+										if (config::visuals::worlds::moon_brightness_override.value)
 											gui->slider_float("Moon Bright", &config::visuals::worlds::moon_brightness.value, 0.1f, 50.f, false, "%.1f");
-										}
+
 										gui->checkbox("Moon Phase", &config::visuals::worlds::moon_phase_override.value);
-										if (config::visuals::worlds::moon_phase_override.value) {
-											ImGui::SameLine(180.f * dpi_scale);
+										if (config::visuals::worlds::moon_phase_override.value)
 											gui->slider_float("Phase", &config::visuals::worlds::moon_phase.value, 0.f, 1.f, false, "%.2f");
-										}
+
 										gui->checkbox("Moon Halo", &config::visuals::worlds::moon_halo.value);
-										if (config::visuals::worlds::moon_halo.value) {
+										if (config::visuals::worlds::moon_halo.value)
+										{
 											gui->slider_float("Halo Size", &config::visuals::worlds::moon_halo_size.value, 0.1f, 15.f, false, "%.1f");
 											gui->slider_float("Halo Bright", &config::visuals::worlds::moon_halo_brightness.value, 0.1f, 15.f, false, "%.1f");
 										}
+
 										const char* moon_positions[] = { "Opposite To Sun", "Realistic" };
 										gui->dropdown("Moon Position", &config::visuals::worlds::moon_position.value, moon_positions, 2);
 
-										// Stars
+										ImGui::Separator();
+
+										// ── Stars ────────────────────────────
 										gui->checkbox("Night Stars", &config::visuals::worlds::night_stars.value);
-										if (config::visuals::worlds::night_stars.value) {
+										if (config::visuals::worlds::night_stars.value)
+										{
 											gui->slider_float("Stars Size", &config::visuals::worlds::night_stars_size.value, 0.1f, 15.f, false, "%.1f");
 											gui->slider_float("Stars Bright", &config::visuals::worlds::night_stars_brightness.value, 0.1f, 15.f, false, "%.1f");
 										}
+
 										const char* star_positions[] = { "Static", "Rotating" };
 										gui->dropdown("Stars Position", &config::visuals::worlds::night_stars_position.value, star_positions, 2);
 									}
 									gui->end_child();
 
-									// ── Physical Layers ───────────────────────────────────
-									gui->begin_child("Physical Layers", 2, 0, ImVec2(0, h_layers_child));
+									// ── Physical Layers ──────────────────────
+									gui->begin_child("Physical Layers", 2, 0, ImVec2(0, ImGui::GetContentRegionAvail().y - elements->content.padding.y));
 									{
 										gui->checkbox("Enable Culling", &config::visuals::layers::layers_enable.value);
 										ImGui::SameLine(180.f * dpi_scale);
 										gui->keybind("Layers Bind", &config::visuals::layers::layers_bind.value, &config::visuals::layers::layers_mode.value);
 
-										std::vector<int> layer_removals = {
-											config::visuals::layers::layers_remove_water.value ? 1 : 0,
-											config::visuals::layers::layers_remove_ragdolls.value ? 1 : 0,
-											config::visuals::layers::layers_remove_buildings.value ? 1 : 0,
-											config::visuals::layers::layers_remove_terrain.value ? 1 : 0,
-											config::visuals::layers::layers_remove_cargoship.value ? 1 : 0,
-											config::visuals::layers::layers_remove_trees.value ? 1 : 0
-										};
-										const char* layer_labels[] = { "Water", "Ragdolls", "Buildings", "Terrain", "Cargo Ship", "Trees" };
-										gui->multi_dropdown("Remove Layers", layer_removals, layer_labels, 6);
+										if (config::visuals::layers::layers_enable.value)
+										{
+											std::vector<int> layer_removals = {
+												config::visuals::layers::layers_remove_water.value ? 1 : 0,
+												config::visuals::layers::layers_remove_ragdolls.value ? 1 : 0,
+												config::visuals::layers::layers_remove_buildings.value ? 1 : 0,
+												config::visuals::layers::layers_remove_terrain.value ? 1 : 0,
+												config::visuals::layers::layers_remove_cargoship.value ? 1 : 0,
+												config::visuals::layers::layers_remove_trees.value ? 1 : 0
+											};
+											const char* layer_labels[] = { "Water", "Ragdolls", "Buildings", "Terrain", "Cargo Ship", "Trees" };
+											gui->multi_dropdown("Remove Layers", layer_removals, layer_labels, 6);
 
-										config::visuals::layers::layers_remove_water.value = layer_removals[0] != 0;
-										config::visuals::layers::layers_remove_ragdolls.value = layer_removals[1] != 0;
-										config::visuals::layers::layers_remove_buildings.value = layer_removals[2] != 0;
-										config::visuals::layers::layers_remove_terrain.value = layer_removals[3] != 0;
-										config::visuals::layers::layers_remove_cargoship.value = layer_removals[4] != 0;
-										config::visuals::layers::layers_remove_trees.value = layer_removals[5] != 0;
+											config::visuals::layers::layers_remove_water.value = layer_removals[0] != 0;
+											config::visuals::layers::layers_remove_ragdolls.value = layer_removals[1] != 0;
+											config::visuals::layers::layers_remove_buildings.value = layer_removals[2] != 0;
+											config::visuals::layers::layers_remove_terrain.value = layer_removals[3] != 0;
+											config::visuals::layers::layers_remove_cargoship.value = layer_removals[4] != 0;
+											config::visuals::layers::layers_remove_trees.value = layer_removals[5] != 0;
+										}
 									}
 									gui->end_child();
 
@@ -1080,14 +1154,13 @@ void c_gui::render()
 
 								gui->sameline();
 
-								// Right column: Weather + Clouds, both in one scrollable child
+								// ════════════════════════════════════════════
+								//  RIGHT COLUMN
+								// ════════════════════════════════════════════
 								gui->begin_group();
 								{
-									const float h_weather = h_total * 0.40f;
-									const float h_clouds = h_total - h_weather - sp;
-
-									// ── Weather Removals & Modifiers ──────────────────────
-									gui->begin_child("Atmosphere & Weather", 2, 1, ImVec2(0, h_weather));
+									// ── Atmosphere & Weather ─────────────────
+									gui->begin_child("Atmosphere & Weather", 2, 1, ImVec2(0, h_weather_child));
 									{
 										std::vector<int> weather_removals = {
 											config::visuals::weather::removals::visuals_weather_no_clouds.value ? 1 : 0,
@@ -1109,41 +1182,53 @@ void c_gui::render()
 										config::visuals::weather::removals::visuals_weather_no_rain.value = weather_removals[5] != 0;
 										config::visuals::weather::removals::visuals_weather_no_sun.value = weather_removals[6] != 0;
 
-										// Fog
-										gui->checkbox("Modify Fog", &config::visuals::weather::modify_fog.value);
-										if (config::visuals::weather::modify_fog.value) {
-											ImGui::SameLine(180.f * dpi_scale);
-											gui->slider_float("Fog Level", &config::visuals::weather::modify_fog_value.value, 0.f, 1.f, false, "%.2f");
+										ImGui::Separator();
+
+										// Fog (hidden if No Fog is active)
+										if (!config::visuals::weather::removals::visuals_weather_no_fog.value)
+										{
+											gui->checkbox("Modify Fog", &config::visuals::weather::modify_fog.value);
+											if (config::visuals::weather::modify_fog.value)
+												gui->slider_float("Fog Level", &config::visuals::weather::modify_fog_value.value, 0.f, 1.f, false, "%.2f");
 										}
-										// Snow
-										gui->checkbox("Modify Snow", &config::visuals::weather::modify_snow.value);
-										if (config::visuals::weather::modify_snow.value) {
-											ImGui::SameLine(180.f * dpi_scale);
-											gui->slider_float("Snow Level", &config::visuals::weather::modify_snow_value.value, 0.f, 1.f, false, "%.2f");
-										}
-										// Rain
-										gui->checkbox("Modify Rain", &config::visuals::weather::modify_rain.value);
-										if (config::visuals::weather::modify_rain.value) {
-											ImGui::SameLine(180.f * dpi_scale);
-											gui->slider_float("Rain Level", &config::visuals::weather::modify_rain_value.value, 0.f, 1.f, false, "%.2f");
+
+										// Snow & Rain (hidden if No Rain is active)
+										if (!config::visuals::weather::removals::visuals_weather_no_rain.value)
+										{
+											gui->checkbox("Modify Snow", &config::visuals::weather::modify_snow.value);
+											if (config::visuals::weather::modify_snow.value)
+												gui->slider_float("Snow Level", &config::visuals::weather::modify_snow_value.value, 0.f, 1.f, false, "%.2f");
+
+											gui->checkbox("Modify Rain", &config::visuals::weather::modify_rain.value);
+											if (config::visuals::weather::modify_rain.value)
+												gui->slider_float("Rain Level", &config::visuals::weather::modify_rain_value.value, 0.f, 1.f, false, "%.2f");
 										}
 									}
 									gui->end_child();
 
-									// ── Custom Clouds ─────────────────────────────────────
-									gui->begin_child("Clouds", 2, 1, ImVec2(0, h_clouds));
+									// ── Custom Clouds ────────────────────────
+									gui->begin_child("Clouds", 2, 1, ImVec2(0, ImGui::GetContentRegionAvail().y - elements->content.padding.y));
 									{
-										gui->checkbox("Custom Clouds", &config::visuals::worlds::custom_clouds.value);
-										if (config::visuals::worlds::custom_clouds.value) {
-											gui->slider_float("Cloud Size", &config::visuals::worlds::cloud_size.value, 0.1f, 50.0f, false, "%.1f");
-											gui->slider_float("Cloud Opacity", &config::visuals::worlds::cloud_opacity.value, 0.0f, 1.0f, false, "%.2f");
-											gui->slider_float("Cloud Coverage", &config::visuals::worlds::cloud_coverage.value, 0.0f, 1.0f, false, "%.2f");
-											gui->slider_float("Cloud Sharpness", &config::visuals::worlds::cloud_sharpness.value, 0.0f, 1.0f, false, "%.2f");
-											gui->slider_float("Cloud Coloring", &config::visuals::worlds::cloud_coloring.value, 0.0f, 1.0f, false, "%.2f");
-											gui->slider_float("Cloud Attenuation", &config::visuals::worlds::cloud_attenuation.value, 0.0f, 1.0f, false, "%.2f");
-											gui->slider_float("Cloud Saturation", &config::visuals::worlds::cloud_saturation.value, 0.0f, 1.0f, false, "%.2f");
-											gui->slider_float("Cloud Scattering", &config::visuals::worlds::cloud_scattering.value, 0.1f, 10.0f, false, "%.1f");
-											gui->slider_float("Cloud Brightness", &config::visuals::worlds::cloud_brightness.value, 0.1f, 10.0f, false, "%.1f");
+										if (!config::visuals::weather::removals::visuals_weather_no_clouds.value)
+										{
+											gui->checkbox("Custom Clouds", &config::visuals::worlds::custom_clouds.value);
+											if (config::visuals::worlds::custom_clouds.value)
+											{
+												ImGui::Separator();
+												gui->slider_float("Cloud Size", &config::visuals::worlds::cloud_size.value, 0.1f, 50.0f, false, "%.1f");
+												gui->slider_float("Cloud Opacity", &config::visuals::worlds::cloud_opacity.value, 0.0f, 1.0f, false, "%.2f");
+												gui->slider_float("Cloud Coverage", &config::visuals::worlds::cloud_coverage.value, 0.0f, 1.0f, false, "%.2f");
+												gui->slider_float("Cloud Sharpness", &config::visuals::worlds::cloud_sharpness.value, 0.0f, 1.0f, false, "%.2f");
+												gui->slider_float("Cloud Coloring", &config::visuals::worlds::cloud_coloring.value, 0.0f, 1.0f, false, "%.2f");
+												gui->slider_float("Cloud Attenuation", &config::visuals::worlds::cloud_attenuation.value, 0.0f, 1.0f, false, "%.2f");
+												gui->slider_float("Cloud Saturation", &config::visuals::worlds::cloud_saturation.value, 0.0f, 1.0f, false, "%.2f");
+												gui->slider_float("Cloud Scattering", &config::visuals::worlds::cloud_scattering.value, 0.1f, 10.0f, false, "%.1f");
+												gui->slider_float("Cloud Brightness", &config::visuals::worlds::cloud_brightness.value, 0.1f, 10.0f, false, "%.1f");
+											}
+										}
+										else
+										{
+											ImGui::TextDisabled("Clouds are disabled in Weather Removals.");
 										}
 									}
 									gui->end_child();
@@ -1152,59 +1237,120 @@ void c_gui::render()
 								}
 								gui->end_group();
 							}
-
 							// ── Misc ──────────────────────────────────────────────────
 							if (subtabs == 3)
 							{
-								const float h_total = ImGui::GetWindowHeight() - elements->content.padding.y * 2.f - elements->content.spacing.y * 2.f - var->window.titlebar;
+								const float h_env_child_left = ImGui::GetContentRegionAvail().y * 0.35f;
+								const float h_env_child_right = ImGui::GetContentRegionAvail().y * 0.45f;
 
+								// ── LEFT COLUMN ──────────────────────────────
 								gui->begin_group();
 								{
-									const float h_exploits = 165.f * dpi_scale;
-									const float h_view = h_total - h_exploits - elements->content.spacing.y;
-
-									gui->begin_child("Exploits", 2, 0, ImVec2(0, h_exploits));
+									// ── Exploits ─────────────────────────────
+									gui->begin_child("Exploits", 2, 0, ImVec2(0, h_env_child_left));
 									{
 										gui->checkbox("Fast Loot", &config::exploits_fast_loot.value);
+
 										gui->checkbox("Auto Reload", &config::misc::automatic::misc_automatic_auto_reload.value);
+
 										gui->checkbox("Auto Heal", &config::misc::automatic::misc_automatic_auto_heal.value);
+										gui->checkbox("Ore Farm Assist", &config::misc::automatic::ore_assist_farm.value);
+										gui->checkbox("Tree Farm Assist", &config::misc::automatic::tree_assist_farm.value);
+
 										gui->checkbox("Fake Admin", &config::misc::exploits::exploits_admin_flag.value);
+										if (ImGui::IsItemHovered())
+										{
+											ImGui::BeginTooltip();
+											ImGui::Text("Adds an admin icon next to your name.\nDoes not grant real admin privileges.");
+											ImGui::EndTooltip();
+										}
+
 										gui->checkbox("Anti-Fly Kick", &config::misc::exploits::exploits_anti_fly_hack_kick.value);
+										if (ImGui::IsItemHovered())
+										{
+											ImGui::BeginTooltip();
+											ImGui::Text("Prevents the server from kicking\nyou for fly-hack detection.");
+											ImGui::EndTooltip();
+										}
+
 										gui->checkbox("Extended Melee", &config::misc::exploits::exploits_extended_melee.value);
+										if (ImGui::IsItemHovered())
+										{
+											ImGui::BeginTooltip();
+											ImGui::Text("Extends melee weapon reach.");
+											ImGui::EndTooltip();
+										}
+
 										gui->checkbox("Name Spoofer", &config::misc::exploits::exploits_name_spoofer.value);
-										if (ImGui::IsItemHovered()) {
+										if (ImGui::IsItemHovered())
+										{
 											ImGui::BeginTooltip();
 											ImGui::Text("Spoofs your username to a random one.\nTo apply, stay in main menu or rejoin the server.");
 											ImGui::EndTooltip();
 										}
+
+										gui->checkbox("Attack In Air", &config::misc::exploits::misc_modify_can_attack.value);
+										gui->checkbox("Aim With Heavy Armor", &config::misc::exploits::exploits_unlock_aim_on_jugger_set.value);
+										gui->checkbox("Attack In Vehicles", &config::misc::exploits::exploits_can_attack_in_vehicles.value);
+
+										gui->checkbox("Traps Exploit", &config::misc::exploits::exploits_traps_exploit.value);
+										if (config::misc::exploits::exploits_traps_exploit.value) {
+											gui->sameline();
+											gui->keybind("Traps Key", &config::misc::exploits::exploits_traps_exploit_key.value, &config::misc::exploits::exploits_traps_exploit_keymode.value);
+
+											gui->slider_float("Traps Amount", &config::misc::exploits::exploits_traps_exploit_amount.value, 0.05f, 2.0f, false, "%.2f");
+										}
+
+										gui->checkbox("Fake Lag", &config::misc::exploits::exploits_fake_lag.value);
+										if (config::misc::exploits::exploits_fake_lag.value) {
+											gui->slider_float("FL Cooldown", &config::misc::exploits::exploits_fake_lag_cooldown.value, 0.1f, 5.0f, false, "%.2f");
+											gui->slider_float("FL Duration", &config::misc::exploits::exploits_fake_lag_duration.value, 0.1f, 1.0f, false, "%.2f");
+											gui->slider_float("FL Min", &config::misc::exploits::exploits_fake_lag_min.value, 0.0f, 0.5f, false, "%.2f");
+											gui->slider_float("FL Max", &config::misc::exploits::exploits_fake_lag_max.value, 0.0f, 1.0f, false, "%.2f");
+										}
 									}
 									gui->end_child();
 
-									gui->begin_child("View", 2, 0, ImVec2(0, h_view));
+									// ── View ─────────────────────────────────
+									gui->begin_child("View", 2, 0, ImVec2(0, ImGui::GetContentRegionAvail().y - elements->content.padding.y));
 									{
+										// FOV
 										gui->checkbox("FOV Changer", &config::misc::view::misc_fov_changer.value);
-										if (config::misc::view::misc_fov_changer.value) {
+										if (config::misc::view::misc_fov_changer.value)
 											gui->slider_float("FOV Amount", &config::misc::view::misc_fov_changer_amount.value, 60.f, 150.f, false, "%.0f");
-										}
 
+										ImGui::Separator();
+
+										// Zoom
 										gui->checkbox("Zoom Changer", &config::misc::view::misc_zoom_changer.value, &config::misc::view::misc_zoom_key.value, &config::misc::view::misc_zoom_key_mode.value);
-										if (config::misc::view::misc_zoom_changer.value) {
+										if (config::misc::view::misc_zoom_changer.value)
 											gui->slider_float("Zoom FOV", &config::misc::view::misc_zoom_value.value, 5.f, 89.f, false, "%.0f");
-										}
 
+										ImGui::Separator();
+
+										// Aspect Ratio
 										gui->checkbox("Aspect Ratio", &config::misc::view::misc_aspect_ratio_changer.value);
-										if (config::misc::view::misc_aspect_ratio_changer.value) {
+										if (config::misc::view::misc_aspect_ratio_changer.value)
 											gui->slider_float("Aspect Value", &config::misc::view::misc_aspect_ratio_value.value, 0.5f, 3.0f, false, "%.3f");
-										}
 
+										ImGui::Separator();
+
+										// Camera
 										gui->checkbox("Camera Mode", &config::misc::view::misc_camera_mode.value, &config::misc::view::misc_camera_mode_key.value, &config::misc::view::misc_camera_mode_key_mode.value);
-										if (config::misc::view::misc_camera_mode.value) {
+										if (config::misc::view::misc_camera_mode.value)
+										{
 											const char* cam_modes[] = { "First Person", "Third Person", "Eyes", "First Person (Arms)" };
 											gui->dropdown("Camera Mode Type", &config::misc::view::misc_camera_mode_value.value, cam_modes, 4);
 											gui->slider_float("Camera Distance", &config::misc::view::misc_camera_mode_dist.value, 0.f, 10.f, false, "%.1f");
 										}
 
 										gui->checkbox("Camera to Bullet", &config::misc::view::misc_camera_to_bullet.value, &config::misc::view::misc_camera_to_bullet_key.value, &config::misc::view::misc_camera_to_bullet_key_mode.value);
+										if (ImGui::IsItemHovered())
+										{
+											ImGui::BeginTooltip();
+											ImGui::Text("Moves the camera to follow\nthe bullet trajectory on shot.");
+											ImGui::EndTooltip();
+										}
 									}
 									gui->end_child();
 
@@ -1214,43 +1360,82 @@ void c_gui::render()
 
 								gui->sameline();
 
+								// ── RIGHT COLUMN ─────────────────────────────
 								gui->begin_group();
 								{
-									const float h_viewmodel = 240.f * dpi_scale;
-									const float h_movement = h_total - h_viewmodel - elements->content.spacing.y;
-
-									gui->begin_child("Viewmodel", 2, 1, ImVec2(0, h_viewmodel));
+									// ── Viewmodel ────────────────────────────
+									gui->begin_child("Viewmodel", 2, 1, ImVec2(0, h_env_child_right));
 									{
 										gui->checkbox("Enable Features", &config::misc::viewmodel::misc_viewmodel.value);
-										gui->checkbox("Viewmodel Changer", &config::misc::viewmodel::misc_viewmodel_changer.value);
-										
-										if (config::misc::viewmodel::misc_viewmodel_changer.value) {
-											gui->slider_float("Offset X", &config::misc::viewmodel::misc_viewmodel_X.value, -5.f, 5.f, false, "%.2f");
-											gui->slider_float("Offset Y", &config::misc::viewmodel::misc_viewmodel_Y.value, -5.f, 5.f, false, "%.2f");
-											gui->slider_float("Offset Z", &config::misc::viewmodel::misc_viewmodel_Z.value, -5.f, 5.f, false, "%.2f");
+										if (ImGui::IsItemHovered())
+										{
+											ImGui::BeginTooltip();
+											ImGui::Text("Master toggle for all\nviewmodel modifications.");
+											ImGui::EndTooltip();
 										}
 
-										gui->checkbox("No Bob", &config::misc::viewmodel::misc_no_viewmodel_bob.value);
-										gui->checkbox("No Sway", &config::misc::viewmodel::misc_no_viewmodel_sway.value);
-										gui->checkbox("No Lower", &config::misc::viewmodel::misc_no_viewmodel_lower.value);
-										gui->checkbox("No Attack Animation", &config::misc::viewmodel::misc_no_attack_animation.value);
+										if (config::misc::viewmodel::misc_viewmodel.value)
+										{
+											ImGui::Separator();
+
+											gui->checkbox("Viewmodel Changer", &config::misc::viewmodel::misc_viewmodel_changer.value);
+											if (config::misc::viewmodel::misc_viewmodel_changer.value)
+											{
+												gui->slider_float("Offset X", &config::misc::viewmodel::misc_viewmodel_X.value, -5.f, 5.f, false, "%.2f");
+												gui->slider_float("Offset Y", &config::misc::viewmodel::misc_viewmodel_Y.value, -5.f, 5.f, false, "%.2f");
+												gui->slider_float("Offset Z", &config::misc::viewmodel::misc_viewmodel_Z.value, -5.f, 5.f, false, "%.2f");
+											}
+
+											ImGui::Separator();
+
+											gui->checkbox("No Bob", &config::misc::viewmodel::misc_no_viewmodel_bob.value);
+											gui->checkbox("No Sway", &config::misc::viewmodel::misc_no_viewmodel_sway.value);
+											gui->checkbox("No Lower", &config::misc::viewmodel::misc_no_viewmodel_lower.value);
+											gui->checkbox("No Attack Animation", &config::misc::viewmodel::misc_no_attack_animation.value);
+										}
 									}
 									gui->end_child();
 
-									gui->begin_child("Movement", 2, 1, ImVec2(0, h_movement));
+									// ── Movement ─────────────────────────────
+									gui->begin_child("Movement", 2, 1, ImVec2(0, ImGui::GetContentRegionAvail().y - elements->content.padding.y));
 									{
 										gui->checkbox("No Melee Slowdown", &config::misc::movement::disable_melee_slow_down.value);
+
+										ImGui::Separator();
+
+										// Walk exploits
 										gui->checkbox("Walk Through Trees", &config::misc::movement::exploits_walk_through_trees.value);
 										gui->checkbox("Walk Through Players", &config::misc::movement::exploits_walk_through_players.value);
 										gui->checkbox("Walk On Water", &config::misc::movement::exploits_walk_on_water.value);
+
+										ImGui::Separator();
+
+										// Movement extras
 										gui->checkbox("Omni Sprint", &config::misc::movement::exploits_omni_sprint.value);
-										gui->checkbox("Infinite Jump", &config::misc::movement::misc_infinite_jump.value);
-										gui->checkbox("Climb Assist", &config::misc::movement::misc_climb_assist.value);
-										if (config::misc::movement::misc_climb_assist.value) {
-											gui->checkbox("Bypass High Walls", &config::misc::movement::misc_climb_assist_bypass.value);
+										if (ImGui::IsItemHovered())
+										{
+											ImGui::BeginTooltip();
+											ImGui::Text("Allows sprinting in any direction.");
+											ImGui::EndTooltip();
 										}
+
+										gui->checkbox("Infinite Jump", &config::misc::movement::misc_infinite_jump.value);
+
+										gui->checkbox("Climb Assist", &config::misc::movement::misc_climb_assist.value);
+										if (config::misc::movement::misc_climb_assist.value)
+											gui->checkbox("Bypass High Walls", &config::misc::movement::misc_climb_assist_bypass.value);
+
 										gui->checkbox("Always Sprint", &config::misc::movement::misc_always_sprint.value);
+
+										ImGui::Separator();
+
 										gui->checkbox("Suicide", &config::misc::movement::misc_suicide.value, &config::misc::movement::misc_suicide_key.value, nullptr);
+										if (ImGui::IsItemHovered())
+										{
+											ImGui::BeginTooltip();
+											ImGui::Text("Instantly kills your character\nwhen the keybind is pressed.");
+											ImGui::EndTooltip();
+										}
 									}
 									gui->end_child();
 
@@ -1258,7 +1443,6 @@ void c_gui::render()
 								}
 								gui->end_group();
 							}
-
 							// ── Player List ───────────────────────────────────────────
 							if (subtabs == 4)
 							{
@@ -2164,12 +2348,12 @@ void c_gui::render()
 							// ── Interface ──────────────────────────────────────────
 							gui->begin_child("Interface", 2, 3);
 							{
-								if (config::menu::overlay.value.size() < 4) {
-									config::menu::overlay.value.resize(4, 0);
+								if (config::menu::overlay.value.size() < 5) {
+									config::menu::overlay.value.resize(5, 0);
 								}
-								const char* overlay_names[4] = { "Watermark", "Keybinds", "Reload Indicator", "Flyhack Indicator" };
+								const char* overlay_names[5] = { "Watermark", "Keybinds", "Reload Indicator", "Flyhack Indicator", "Traps Indicator" };
 								gui->multi_dropdown("Overlay",
-									config::menu::overlay.value, overlay_names, 4);
+									config::menu::overlay.value, overlay_names, 5);
 
 								//ImGui::Dummy(ImVec2(0, 2.f));
 
@@ -2678,6 +2862,133 @@ void c_gui::render_flyhack_indicator()
 		float pulse = (std::sin((float)ImGui::GetTime() * 15.0f) + 1.0f) * 0.5f;
 		bar_fill = bar_color(smooth_progress, 0.5f + pulse * 0.5f);
 	}
+
+	dl->AddRectFilled(
+		ImVec2(p.x + bar_pad_x, bar_y),
+		ImVec2(m.x - bar_pad_x, bar_y + bar_h),
+		bar_bg, 1.5f);
+
+	if (smooth_progress > 0.01f) {
+		dl->AddRectFilled(
+			ImVec2(p.x + bar_pad_x, bar_y),
+			ImVec2(p.x + bar_pad_x + (W - bar_pad_x * 2.f) * smooth_progress, bar_y + bar_h),
+			bar_fill, 1.5f);
+	}
+}
+
+extern bool g_traps_active;
+
+void c_gui::render_traps_indicator()
+{
+	bool is_menu_open = var->gui.menu_opened;
+	bool is_indicator_enabled = config::menu::overlay.value.size() > 4 && config::menu::overlay.value[4];
+	bool is_on_server = g_is_on_server;
+
+	float target_progress = (is_on_server && g_traps_active) ? 1.0f : 0.0f;
+
+	if (is_menu_open && target_progress <= 0.01f) {
+		target_progress = 1.0f;
+	}
+
+	bool show_window = is_indicator_enabled && (is_menu_open || (is_on_server && target_progress > 0.01f));
+
+	static float alpha = 0.f;
+	alpha = ImClamp(alpha + (gui->fixed_speed(8.f) * (show_window ? 1.f : -1.f)), 0.f, 1.f);
+
+	if (alpha <= 0.01f) return;
+
+	static float smooth_progress = 0.0f;
+	float dt = ImGui::GetIO().DeltaTime;
+	smooth_progress = ImLerp(smooth_progress, target_progress, ImClamp(dt * 10.0f, 0.f, 1.f));
+
+	static bool init_pos = false;
+	static ImVec2 pos = { 0, 0 };
+	if (!init_pos) {
+		pos = { (float)config::visuals::interfaces::traps_indicator_X.value, (float)config::visuals::interfaces::traps_indicator_Y.value };
+		if (pos.x <= 0.f || pos.y <= 0.f) {
+			pos = { 10.f, 360.f };
+		}
+		init_pos = true;
+	}
+
+	const float W = 150.f;
+	const float H = 44.f;
+
+	ImGuiIO& io = ImGui::GetIO();
+	ImGui::SetNextWindowPos(pos, ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2(W, H));
+
+	ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoBackground |
+		ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoNav;
+
+	if (!is_menu_open) flags |= ImGuiWindowFlags_NoInputs;
+
+	gui->push_style_color(ImGuiCol_WindowBg, draw->get_clr(ImColor(0.f, 0.f, 0.f, 0.f)));
+	gui->push_style_color(ImGuiCol_Border, draw->get_clr(ImColor(0.f, 0.f, 0.f, 0.f)));
+
+	if (ImGui::Begin(_("##traps_indicator_wnd"), nullptr, flags)) {
+		if (is_menu_open) {
+			ImGui::SetCursorScreenPos(pos);
+			ImGui::InvisibleButton(_("##traps_drag"), ImVec2(W, H));
+			if (ImGui::IsItemActive() && ImGui::IsMouseDragging(0)) {
+				pos.x += io.MouseDelta.x;
+				pos.y += io.MouseDelta.y;
+				config::visuals::interfaces::traps_indicator_X.value = pos.x;
+				config::visuals::interfaces::traps_indicator_Y.value = pos.y;
+			}
+		}
+	}
+	ImGui::End();
+
+	gui->pop_style_color(2);
+
+	auto C = [&](ImColor col, float mult = 1.f) -> ImU32 {
+		return draw->get_clr(ImColor(col.Value.x, col.Value.y, col.Value.z,
+			col.Value.w * alpha * mult));
+	};
+
+	auto bar_color = [&](float t, float a_mult = 1.f) -> ImU32 {
+		return draw->get_clr(ImColor(1.0f - t, t, 0.0f, alpha * a_mult));
+	};
+
+	ImDrawList* dl = ImGui::GetBackgroundDrawList();
+	const ImVec2 p = pos;
+	const ImVec2 m = { p.x + W, p.y + H };
+
+	draw->rect_filled(dl, p, m, C(clr->window.background_one));
+	draw->rect(dl, p, m, C(clr->window.stroke));
+
+	ImU32 dyn_col      = bar_color(smooth_progress);
+	ImU32 dyn_col_fade = bar_color(smooth_progress, 0.35f);
+	draw->line(dl, p + ImVec2(1, 1), p + ImVec2(W - 1, 1), dyn_col,      1);
+	draw->line(dl, p + ImVec2(1, 2), p + ImVec2(W - 1, 2), dyn_col_fade, 1);
+
+	char text_buf[64] = "traps exploit";
+	ImVec2 text_size = var->font.tahoma->CalcTextSizeA(var->font.tahoma->FontSize, FLT_MAX, 0.f, text_buf);
+	draw->text_outline(dl, var->font.tahoma, var->font.tahoma->FontSize,
+		ImVec2(p.x + (W - text_size.x) * 0.5f, p.y + 5.f),
+		C(clr->widgets.text), text_buf);
+
+	const char* status_str = "inactive";
+	ImU32 status_col = bar_color(0.0f);
+
+	if (smooth_progress > 0.5f) {
+		status_str = "active";
+		status_col = bar_color(1.0f);
+	}
+
+	ImVec2 status_size = var->font.tahoma->CalcTextSizeA(var->font.tahoma->FontSize, FLT_MAX, 0.f, status_str);
+	draw->text_outline(dl, var->font.tahoma, var->font.tahoma->FontSize,
+		ImVec2(p.x + (W - status_size.x) * 0.5f,
+			   p.y + 5.f + var->font.tahoma->FontSize + 3.f),
+		status_col, status_str);
+
+	const float bar_pad_x = 8.f;
+	const float bar_h     = 3.f;
+	const float bar_y     = m.y - 8.f;
+
+	ImU32 bar_bg   = C(clr->window.stroke);
+	ImU32 bar_fill = bar_color(smooth_progress);
 
 	dl->AddRectFilled(
 		ImVec2(p.x + bar_pad_x, bar_y),

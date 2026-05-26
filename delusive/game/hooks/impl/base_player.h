@@ -7,6 +7,7 @@
 #include "../../features/esp/esp.h"
 
 #include "../../features/misc/misc.h"
+#include "../../features/visuals/visuals.h"
 
 namespace base_player
 {
@@ -41,6 +42,19 @@ namespace base_player
         time_changer();
         anti_fly_hack_kick();
         fast_heal();
+        attack_actions();
+        exploits_actions();
+
+        auto* tod_sky = sdk::TOD_Sky::instance();
+        if (memory::is_valid(tod_sky)) {
+            sdk::TOD_CycleParameters* cycle = tod_sky->cycle();
+            if (memory::is_valid(cycle)) {
+                float raw_hour = cycle->hour();
+                sdk::server_hour = static_cast<int>(raw_hour);
+                sdk::server_minute = static_cast<int>((raw_hour - static_cast<float>(sdk::server_hour)) * 60.0f);
+            }
+            visuals::tod_sky_late_update(tod_sky);
+        }
 
         if (var->gui.menu_opened) {
             return;

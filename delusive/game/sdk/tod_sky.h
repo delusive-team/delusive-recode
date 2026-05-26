@@ -95,6 +95,8 @@ namespace sdk {
 		il2cpp_field_get(TOD_AtmosphereParameters*, atmosphere, atmosphere_ptr);
 
 		static TOD_Sky* instance() {
+			static uintptr_t get_instance_ptr = 0;
+			if (!get_instance_ptr) get_instance_ptr = mem::read<uintptr_t>(il2cpp::get_method<uintptr_t>(il2cpp::get_class(_(""), _("TOD_Sky")), _("get_Instance"), -1));
 			return safe.call<TOD_Sky*>(get_instance_ptr);
 		}
 	};

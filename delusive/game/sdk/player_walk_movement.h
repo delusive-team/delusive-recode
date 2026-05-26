@@ -34,6 +34,7 @@ namespace sdk {
 		static inline uintptr_t gravity_multiplier_swimming_ptr = 0;
 		static inline uintptr_t capsule_center_ptr = 0;
 		static inline uintptr_t admin_cheat_ptr = 0;
+		static inline uintptr_t grounded_backing_ptr = 0;
 
 		static inline uintptr_t teleport_to_ptr = 0;
 
@@ -44,6 +45,7 @@ namespace sdk {
 			il2cpp_field_offset(capsule_ptr, _(""), _("PlayerWalkMovement"), _("capsule"));
 			il2cpp_field_offset(ladder_ptr, _(""), _("PlayerWalkMovement"), _("ladder"));
 			il2cpp_field_offset(running_ptr, _(""), _("BaseMovement"), _("<Running>k__BackingField"));
+			il2cpp_field_offset(grounded_backing_ptr, _(""), _("BaseMovement"), _("<Grounded>k__BackingField"));
 			il2cpp_field_offset(ground_time_ptr, _(""), _("PlayerWalkMovement"), _("groundTime"));
 			il2cpp_field_offset(jumping_ptr, _(""), _("PlayerWalkMovement"), _("jumping"));
 			il2cpp_field_offset(sliding_ptr, _(""), _("PlayerWalkMovement"), _("sliding"));
@@ -71,6 +73,7 @@ namespace sdk {
 		il2cpp_field_get(float, running, running_ptr);
 		il2cpp_field_get(float, ground_time, ground_time_ptr);
 		il2cpp_field_get(bool, grounded, grounded_ptr);
+		il2cpp_field_get(float, grounded_backing, grounded_backing_ptr);
 
 		il2cpp_field_set(uintptr_t, set_ladder, ladder_ptr);
 		il2cpp_field_set(bool, set_flying, flying_ptr);
@@ -79,6 +82,7 @@ namespace sdk {
 		il2cpp_field_set(float, set_running, running_ptr);
 		il2cpp_field_set(bool, set_climbing, climbing_ptr);
 		il2cpp_field_set(bool, set_grounded, grounded_ptr);
+		il2cpp_field_set(float, set_grounded_backing, grounded_backing_ptr);
 		il2cpp_field_set(bool, set_was_falling, was_falling_ptr);
 		il2cpp_field_set(float, set_land_time, land_time_ptr);
 		il2cpp_field_set(float, set_jump_time, jump_time_ptr);

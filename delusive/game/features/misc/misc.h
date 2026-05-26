@@ -601,3 +601,99 @@ inline void fast_heal() {
 		}
 	}
 }
+
+void attack_actions() {
+	if (!memory::is_valid(sdk::local_player))
+		return;
+
+	if (config::misc::exploits::misc_modify_can_attack.value) {
+		auto* movement = sdk::local_player->walk_movement();
+		if (memory::is_valid(movement)) {
+			auto* model_state = sdk::local_player->model_state();
+			if (memory::is_valid(model_state))
+				model_state->add_flag(enums::e_model_state_flags::on_ground);
+
+			movement->set_grounded_backing(1.f);
+		}
+	}
+
+	if (config::misc::exploits::exploits_unlock_aim_on_jugger_set.value) {
+		sdk::local_player->set_clothing_blocks_aiming(false);
+	}
+
+	if (config::misc::exploits::exploits_can_attack_in_vehicles.value) {
+		auto* mounted = sdk::local_player->mounted();
+		if (memory::is_valid(mounted)) {
+			mounted->set_can_wield_items(true);
+		}
+	}
+}
+
+inline bool g_traps_active = false;
+
+void exploits_actions() {
+	if (!memory::is_valid(sdk::local_player) || core::g_unloading)
+		return;
+
+	static bool fl_in_window = false;
+	static float fl_last_toggle = 0.f;
+	static float original_tick_interval = 0.05f;
+
+	bool traps_active = false;
+	if (config::misc::exploits::exploits_traps_exploit.value) {
+		int key = config::misc::exploits::exploits_traps_exploit_key.value;
+		int mode = config::misc::exploits::exploits_traps_exploit_keymode.value;
+		if (key != 0) {
+			if (mode == 0) {
+				traps_active = (GetAsyncKeyState(key) & 0x8000) != 0;
+			} else if (mode == 1) {
+				static bool toggle = false;
+				static bool pressed = false;
+				bool is_pressed = (GetAsyncKeyState(key) & 0x8000) != 0;
+				if (is_pressed && !pressed) toggle = !toggle;
+				pressed = is_pressed;
+				traps_active = toggle;
+			} else {
+				traps_active = true;
+			}
+		}
+	}
+
+	g_traps_active = traps_active;
+
+	if (traps_active) {
+		sdk::local_player->set_client_tick_interval(config::misc::exploits::exploits_traps_exploit_amount.value);
+		fl_in_window = false;
+	}
+	else if (config::misc::exploits::exploits_fake_lag.value) {
+		float current_time = unity::Time::time();
+
+		if (!fl_in_window) {
+			if (current_time - fl_last_toggle >= config::misc::exploits::exploits_fake_lag_cooldown.value) {
+				fl_in_window = true;
+				fl_last_toggle = current_time;
+			}
+			else {
+				sdk::local_player->set_client_tick_interval(original_tick_interval);
+			}
+		}
+		else {
+			float elapsed = current_time - fl_last_toggle;
+			if (elapsed > config::misc::exploits::exploits_fake_lag_duration.value) {
+				fl_in_window = false;
+				fl_last_toggle = current_time;
+				sdk::local_player->set_client_tick_interval(original_tick_interval);
+			}
+			else {
+				float min_val = config::misc::exploits::exploits_fake_lag_min.value;
+				float max_val = config::misc::exploits::exploits_fake_lag_max.value;
+				float random_tick = min_val + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (max_val - min_val)));
+				sdk::local_player->set_client_tick_interval(random_tick);
+			}
+		}
+	}
+	else {
+		sdk::local_player->set_client_tick_interval(original_tick_interval);
+		fl_in_window = false;
+	}
+}
