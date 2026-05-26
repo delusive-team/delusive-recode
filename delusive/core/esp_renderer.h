@@ -15,7 +15,7 @@ enum e_text_flags : uint32_t {
 
 class c_esp_renderer {
 private:
-    ImDrawList* draw_list = ImGui::GetBackgroundDrawList();
+    #define draw_list ImGui::GetForegroundDrawList()
 
     c_esp_renderer() = default;
 
@@ -79,25 +79,21 @@ public:
     }
 
     void box( float x, float y, float w, float h, ImU32 color, float thickness = 1.0f ) {
-        rect( x, y, w, thickness, color, 0.0f, 0.0f );
-        rect( x, y, thickness, h, color, 0.0f, 0.0f );
-        rect( x + w - thickness, y, thickness, h, color, 0.0f, 0.0f );
-        rect( x, y + h - thickness, w, thickness, color, 0.0f, 0.0f );
+        draw_list->AddRect( ImVec2( x, y ), ImVec2( x + w, y + h ), color, 0.0f, 0, thickness );
     }
 
     void corner_box( float x, float y, float w, float h, float length, ImU32 color, float thickness = 1.0f ) {
-        // Top left
-        line( x, y, x + length, y, color, thickness );
-        line( x, y, x, y + length, color, thickness );
-        // Top right
-        line( x + w - length, y, x + w, y, color, thickness );
-        line( x + w, y, x + w, y + length, color, thickness );
-        // Bottom left
-        line( x, y + h - length, x, y + h, color, thickness );
-        line( x, y + h, x + length, y + h, color, thickness );
-        // Bottom right
-        line( x + w, y + h - length, x + w, y + h, color, thickness );
-        line( x + w - length, y + h, x + w, y + h, color, thickness );
+        ImVec2 top_left[3] = { ImVec2(x + length, y), ImVec2(x, y), ImVec2(x, y + length) };
+        draw_list->AddPolyline(top_left, 3, color, 0, thickness);
+
+        ImVec2 top_right[3] = { ImVec2(x + w - length, y), ImVec2(x + w, y), ImVec2(x + w, y + length) };
+        draw_list->AddPolyline(top_right, 3, color, 0, thickness);
+
+        ImVec2 bot_left[3] = { ImVec2(x, y + h - length), ImVec2(x, y + h), ImVec2(x + length, y + h) };
+        draw_list->AddPolyline(bot_left, 3, color, 0, thickness);
+
+        ImVec2 bot_right[3] = { ImVec2(x + w, y + h - length), ImVec2(x + w, y + h), ImVec2(x + w - length, y + h) };
+        draw_list->AddPolyline(bot_right, 3, color, 0, thickness);
     }
 
     void health_bar( float x, float y, float w, float h, float health, float max_health ) {
@@ -144,15 +140,10 @@ public:
         }
 
         if ( flags & text_outline ) {
+            draw_list->AddText( font, font_size, ImVec2( x + 1.0f, y + 1.0f ), outline_color, buffer );
+            draw_list->AddText( font, font_size, ImVec2( x - 1.0f, y - 1.0f ), outline_color, buffer );
             draw_list->AddText( font, font_size, ImVec2( x + 1.0f, y - 1.0f ), outline_color, buffer );
             draw_list->AddText( font, font_size, ImVec2( x - 1.0f, y + 1.0f ), outline_color, buffer );
-            draw_list->AddText( font, font_size, ImVec2( x - 1.0f, y - 1.0f ), outline_color, buffer );
-            draw_list->AddText( font, font_size, ImVec2( x + 1.0f, y + 1.0f ), outline_color, buffer );
-            
-            draw_list->AddText( font, font_size, ImVec2( x, y + 1.0f ), outline_color, buffer );
-            draw_list->AddText( font, font_size, ImVec2( x, y - 1.0f ), outline_color, buffer );
-            draw_list->AddText( font, font_size, ImVec2( x + 1.0f, y ), outline_color, buffer );
-            draw_list->AddText( font, font_size, ImVec2( x - 1.0f, y ), outline_color, buffer );
         }
 
         draw_list->AddText( font, font_size, ImVec2( x, y ), color, buffer );

@@ -14,8 +14,8 @@ namespace sdk {
 			create_prefab_ptr = mem::read<uintptr_t>(il2cpp::get_method<uintptr_t>(klass, _("CreatePrefab"), 2));
 		}
 
-		static inline GameManager* instance() {
-			return mem::read<GameManager*>(instance_ptr);
+		static GameManager* instance() {
+			return il2cpp::get_static_field<GameManager*>(instance_ptr);
 		}
 
 		inline unity::GameObject* create_prefab(const char* prefab) {

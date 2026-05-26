@@ -36,6 +36,29 @@ namespace base_player
             }
         }
 
+        for (auto&& player : sdk::info.players) {
+            if (player->is_local_player() || player->lifestate())
+                continue;
+
+            player->set_bone_positions();
+
+            const auto& head_position = player->bone_position(enums::e_bone::head);
+
+            unity::raycast_hit_t hit_info;
+            if (sdk::GamePhysics::trace(unity::ray_t(head_position, head_position + vec3_t(0.f, 500.f, 0.f)), 0.f, hit_info, 500.f, 2097152, enums::e_query_trigger_interaction::ignore, nullptr)) {
+                player->set_player_states(enums::e_player_state::inside);
+            }
+            else {
+                player->set_player_states(enums::e_player_state::outside);
+            }
+
+            if (config::esp::players_flag_visible) {
+                const auto& transform = sdk::camera->transform();
+                if (memory::is_valid(transform))
+                    player->set_visible_state(sdk::GamePhysics::is_visible(transform->position(), player->bone_position(enums::e_bone::head)));
+            }
+        }
+
         viewmodel();
         auto_reload();
         fake_admin();

@@ -255,13 +255,13 @@ namespace renderer {
             gui->render();
         } else {
             scripts::manager::draw();
-            //esp_features::render();
             gui->render_keybinds_list();
             gui->render_reload_indicator();
             gui->render_flyhack_indicator();
             gui->render_traps_indicator();
             gui->watermark();
             gui->render();
+            esp::entities_loop();
         }
 
         ImGui::Render();

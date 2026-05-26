@@ -12,7 +12,7 @@ namespace sdk {
 		}
 
 		static bool is_open() {
-			return mem::read<bool>(is_open_ptr);
+			return il2cpp::get_static_field<bool>(is_open_ptr);
 		}
 	};
 }

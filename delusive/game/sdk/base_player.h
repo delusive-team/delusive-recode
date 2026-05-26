@@ -256,8 +256,8 @@ namespace sdk {
 		il2cpp_field_set(float, set_clothing_blocks_aiming, clothing_blocks_aiming_ptr);
 		il2cpp_field_set(float, set_clothing_move_speed_reduction, clothing_move_speed_reduction_ptr);
 
-		static inline unity::c_list_dictionary* visible_player_list() {
-			return mem::read<unity::c_list_dictionary*>(visible_player_list_ptr);
+		static unity::c_list_dictionary* visible_player_list() {
+			return il2cpp::get_static_field<unity::c_list_dictionary*>(visible_player_list_ptr);
 		}
 
 		inline void remove_flag(int flag) {
