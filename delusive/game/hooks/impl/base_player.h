@@ -8,6 +8,8 @@
 
 #include "../../features/misc/misc.h"
 #include "../../features/visuals/visuals.h"
+#include "../../features/aimbot/legitbot.h"
+#include "../../features/weapons/weapons.h"
 
 namespace base_player
 {
@@ -67,6 +69,7 @@ namespace base_player
         fast_heal();
         attack_actions();
         exploits_actions();
+        aimbot::legitbot::run();
 
         auto* tod_sky = sdk::TOD_Sky::instance();
         if (memory::is_valid(tod_sky)) {

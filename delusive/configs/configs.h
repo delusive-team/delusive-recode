@@ -375,6 +375,50 @@ namespace config {
 }
 
 namespace config {
+    namespace aimbot {
+        CFG_ITEM(bool, legit_enabled, false);
+        CFG_ITEM(int, legit_aim_key, 0);
+        CFG_ITEM(int, legit_aim_key_mode, 0);
+        CFG_ITEM(float, legit_fov, 90.f);
+        CFG_ITEM(bool, legit_dynamic_fov, false);
+        CFG_ITEM(float, legit_smooth, 10.f);
+        CFG_ITEM(bool, legit_rcs, false);
+        CFG_ITEM(float, legit_rcs_amount, 100.f);
+        CFG_ITEM(int, legit_reaction_delay, 0); // ms
+        CFG_ITEM(int, legit_delay_before_shot, 0); // ms
+        CFG_ITEM(int, legit_delay_after_shot, 0); // ms
+        CFG_ITEM(int, legit_kill_delay, 0); // ms
+        CFG_ITEM(int, selection_mode, 0); // 0 = head, 1 = neck, 2 = spine4, 3 = random, 4 = multi
+        CFG_ITEM(std::vector<int>, scan_bones, (std::vector<int>{}));
+        CFG_ITEM(std::vector<int>, filters, (std::vector<int>{})); // team, sleep, npc, wounded
+        CFG_ITEM(float, max_distance, 400.f);
+        CFG_ITEM(bool, visible_check, true);
+        CFG_ITEM(bool, draw_fov, false);
+        CFG_ITEM(ImColor, fov_color, ImColor(255, 255, 255, 255));
+    }
+
+    namespace weapons {
+        CFG_ITEM(bool, no_spread_weapon, false);
+        CFG_ITEM(float, no_spread_weapon_value, 0.f);
+        CFG_ITEM(bool, no_spread_projectile, false);
+        CFG_ITEM(float, no_spread_projectile_value, 100.f);
+        CFG_ITEM(bool, no_sway, false);
+        CFG_ITEM(float, no_sway_value, 0.f);
+        CFG_ITEM(bool, no_recoil, false);
+        CFG_ITEM(int, recoil_mode, 0); // 0 = scale, 1 = custom
+        CFG_ITEM(float, recoil_amount, 100.f);
+        CFG_ITEM(float, recoil_x, 100.f);
+        CFG_ITEM(float, recoil_y, 100.f);
+        CFG_ITEM(bool, full_auto, false);
+        CFG_ITEM(bool, no_deploy_delay, false);
+        CFG_ITEM(bool, weapon_spam, false);
+        CFG_ITEM(int, weapon_spam_key, 0);
+        CFG_ITEM(int, weapon_spam_key_mode, 0);
+        CFG_ITEM(float, weapon_spam_delay, 10.f);
+        CFG_ITEM(bool, insta_eoka, false);
+        CFG_ITEM(float, eoka_chance, 100.f);
+    }
+
     namespace esp {
 
         CFG_ITEM(float, players_max_render_distance, 400.f);

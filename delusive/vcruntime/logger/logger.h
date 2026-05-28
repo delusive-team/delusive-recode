@@ -43,8 +43,6 @@ namespace logger {
 
 } // namespace logger
 
-#ifdef _DEBUG
-
 #define LOG(fmt, ...) \
     do { \
         const char* _msg  = logger::format(fmt, ##__VA_ARGS__); \
@@ -76,14 +74,5 @@ namespace logger {
         printf("%s", _line); \
         logger::write_to_file(_line); \
     } while(0)
-
-#else
-
-#define LOG(fmt, ...)       do {} while(0)
-#define LOG_WARN(fmt, ...)  do {} while(0)
-#define LOG_ERROR(fmt, ...) do {} while(0)
-#define LOG_OK(fmt, ...)    do {} while(0)
-
-#endif
 
 #define PAUSE() getchar()

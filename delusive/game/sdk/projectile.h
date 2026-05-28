@@ -138,7 +138,7 @@ namespace sdk {
 			if (traveled_distance() < 8.f) {
 				return 0.f;
 			}
-			return vec3_t().inverse_lerp(12.f, 20.f, current_velocity().magnitude());
+			return vec3_t().inverse_lerp(12.f, 20.f, current_velocity().magnitude2d());
 		}
 
 		inline void set_effect_scale(float scale) {

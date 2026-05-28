@@ -168,6 +168,14 @@ namespace sdk {
 		il2cpp_field_get(Magazine*, primary_magazine, primary_magazine_ptr);
 		il2cpp_field_get(uintptr_t, damage_properties, damage_properties_ptr);
 
+		il2cpp_field_get(float, aim_cone, aim_cone_ptr);
+		il2cpp_field_get(float, aim_sway, aim_sway_ptr);
+		il2cpp_field_get(float, hip_aim_cone, hip_aim_cone_ptr);
+		il2cpp_field_get(float, aim_cone_penalty_max, aim_cone_penalty_max_ptr);
+		il2cpp_field_get(float, aimcone_penalty_per_shot, aimcone_penalty_per_shot_ptr);
+		il2cpp_field_get(float, aim_sway_speed, aim_sway_speed_ptr);
+		il2cpp_field_get(float, stance_penalty_scale, stance_penalty_scale_ptr);
+
 		il2cpp_field_set(float, set_aim_cone, aim_cone_ptr);
 		il2cpp_field_set(float, set_aim_sway, aim_sway_ptr);
 		il2cpp_field_set(float, set_hip_aim_cone, hip_aim_cone_ptr);
@@ -185,6 +193,7 @@ namespace sdk {
 		il2cpp_field_set(float, set_projectile_velocity_scale, projectile_velocity_scale_ptr);
 		il2cpp_field_set(float, set_aimcone_penalty_recover_time, aimcone_penalty_recover_time_ptr);
 		il2cpp_field_set(float, set_aimcone_penalty_recover_delay, aimcone_penalty_recover_delay_ptr);
+		il2cpp_field_set(float, set_time_since_deploy, time_since_deploy_ptr);
 
 		il2cpp_field_get(unity::c_list<Projectile*>*, created_projectiles, created_projectiles_ptr);
 

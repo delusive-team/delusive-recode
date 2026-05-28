@@ -220,6 +220,7 @@ inline hooks_t g_hooks;
 #include "impl/base_melee.h"
 #include "impl/steam_platform.h"
 #include "impl/client_on_disconnected.h"
+#include "impl/write_to_stream.h"
 
 namespace hooks {
     inline void initialize() {
@@ -232,11 +233,13 @@ namespace hooks {
         HOOK_ADD(_(""), _("BaseMelee"), _("ProcessAttack"), base_melee::process_attack);
         HOOK_ADD(_("Rust.Platform.Steam"), _("SteamPlatform"), _("Update"), steam_platform::steam_platform_update);
         HOOK_ADD_DIRECT_N(_("Network"), _("Client"), _("OnDisconnected"), 1, client::on_disconnected);
+        HOOK_ADD(_("ProtoBuf"), _("ProjectileShoot"), _("WriteToStream"), projectile_shoot::write_to_stream);
     }
 
     inline void detach() {
         convar::Graphics::set_fov(90.f);
-        
+        sdk::local_player->remove_flag(enums::e_flag::is_admin);
+
         HOOK_REMOVE(_(""), _("ItemIcon"), _("TryToMove"), item_icon::try_to_move);
         HOOK_REMOVE(_(""), _("BasePlayer"), _("ClientInput"), base_player::client_input);
         HOOK_REMOVE(_(""), _("BasePlayer"), _("BlockSprint"), base_player::block_sprint);

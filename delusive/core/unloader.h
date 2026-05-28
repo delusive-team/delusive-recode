@@ -2,6 +2,7 @@
 #include "../DllMain.h"
 #include "renderer.h"
 #include "../game/features/visuals/visuals.h"
+#include "../game/features/weapons/weapons.h"
 
 namespace unloader {
 
@@ -14,6 +15,9 @@ namespace unloader {
         if (g_interfaces_initialized && !core::g_unloading) {
             convar::Admin::set_admintime(-1.0f);
             visuals::restore_all();
+            if (memory::is_valid(sdk::local_player)) {
+                features::c_weapons::get().on_unload(sdk::local_player);
+            }
         }
 
         core::g_unloading = true;

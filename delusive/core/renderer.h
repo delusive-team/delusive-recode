@@ -1,6 +1,7 @@
 #pragma once
 #include "../DllMain.h"
 #include "../game/features/esp/esp.h"
+#include "../framework/indicators.h"
 
 namespace renderer {
 
@@ -260,6 +261,7 @@ namespace renderer {
             gui->render_flyhack_indicator();
             gui->render_traps_indicator();
             gui->watermark();
+            gui->render_fov();
             gui->render();
             esp::entities_loop();
         }

@@ -17,6 +17,11 @@ namespace sdk {
 			il2cpp_field_offset(recoil_pitch_max_ptr, _(""), _("RecoilProperties"), _("recoilPitchMax"));
 		}
 
+		il2cpp_field_get(float, recoil_yaw_min, recoil_yaw_min_ptr);
+		il2cpp_field_get(float, recoil_yaw_max, recoil_yaw_max_ptr);
+		il2cpp_field_get(float, recoil_pitch_min, recoil_pitch_min_ptr);
+		il2cpp_field_get(float, recoil_pitch_max, recoil_pitch_max_ptr);
+
 		il2cpp_field_set(float, set_recoil_yaw_min, recoil_yaw_min_ptr);
 		il2cpp_field_set(float, set_recoil_yaw_max, recoil_yaw_max_ptr);
 		il2cpp_field_set(float, set_recoil_pitch_min, recoil_pitch_min_ptr);

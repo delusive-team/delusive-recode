@@ -129,7 +129,7 @@ namespace client
                     vec3_t dir = bullet_vel.normalized();
                     bullet_camera_pos = bullet_pos - (dir * 2.5f);
                     
-                    if (bullet_vel.magnitude() > 0.1f) {
+                    if (bullet_vel.magnitude2d() > 0.1f) {
                         bullet_camera_rot = unity::Quaternion::look_rotation(dir);
                     }
                     bullet_camera_active = true;

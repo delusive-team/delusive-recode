@@ -429,6 +429,9 @@
     <ClInclude Include="framework\elements\esp_preview.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="framework\indicators.h">
+      <Filter>framework</Filter>
+    </ClInclude>
     <ClInclude Include="game\il2cpp\il2cpp.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -1023,7 +1026,7 @@
     <ClInclude Include="game\sdk\view_model.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="game\features\misc\violation.h">
+    <ClInclude Include="game\features\misc\violation\violation.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="game\hooks\impl\base_melee.h">
@@ -1072,6 +1075,24 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="game\features\esp\shared\shared.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\features\aimbot\ragebot.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\features\aimbot\legitbot.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\features\weapons\weapons.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\features\prediction\simulation\simulation.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\features\prediction\prediction.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="game\hooks\impl\write_to_stream.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

@@ -42,9 +42,7 @@ namespace core {
 
 static DWORD WINAPI main_thread( LPVOID )
 {
-#ifdef _DEBUG
     logger::initialize();
-#endif
 
     if ( !renderer::hook_swap_chain() ) {
         LOG_ERROR( "hook_swap_chain failed, unloading" );

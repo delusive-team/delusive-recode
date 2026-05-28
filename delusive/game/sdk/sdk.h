@@ -1,5 +1,9 @@
 #pragma once
 
+#include <cmath>
+#include <algorithm>
+#include <vector>
+
 #include "../../thirdparty/imgui/imgui.h"
 
 // enums

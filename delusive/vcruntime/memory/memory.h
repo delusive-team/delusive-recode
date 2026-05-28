@@ -6,7 +6,12 @@ namespace mem
 {
     inline void copy( void* buffer, void* address, size_t size )
     {
-        memcpy( buffer, address, size );
+        __try {
+            memcpy( buffer, address, size );
+        }
+        __except ( EXCEPTION_EXECUTE_HANDLER ) {
+            memset( buffer, 0, size );
+        }
     }
 
     template < typename T = uintptr_t, typename A >

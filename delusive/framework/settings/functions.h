@@ -126,6 +126,7 @@ public:
     void render_traps_indicator();
 
     void watermark();
+    void render_fov();
 
     bool begin_table(const char* str_id, int columns_count, ImGuiTableFlags flags = 0, const ImVec2& outer_size = ImVec2(0, 0), float inner_width = 0);
 

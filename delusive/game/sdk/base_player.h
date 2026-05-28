@@ -168,6 +168,7 @@ namespace sdk {
 		static inline uintptr_t send_client_tick_ptr = 0;
 		static inline uintptr_t world_space_bounds_ptr = 0;
 		static inline uintptr_t get_mount_velocity_ptr = 0;
+		static inline uintptr_t get_world_velocity_ptr = 0;
 		static inline uintptr_t on_view_mode_changed_ptr = 0;
 		static inline uintptr_t send_projectile_update_ptr = 0;
 		static inline uintptr_t pivot_point_ptr = 0;
@@ -221,6 +222,7 @@ namespace sdk {
 			send_client_tick_ptr = mem::read<uintptr_t>(il2cpp::get_method<uintptr_t>(klass, _("SendClientTick"), -1));
 			world_space_bounds_ptr = mem::read<uintptr_t>(il2cpp::get_method<uintptr_t>(klass, _("WorldSpaceBounds"), -1));
 			get_mount_velocity_ptr = mem::read<uintptr_t>(il2cpp::get_method<uintptr_t>(klass, _("GetMountVelocity"), 0));
+			get_world_velocity_ptr = mem::read<uintptr_t>(il2cpp::get_method<uintptr_t>(klass, _("GetWorldVelocity"), 0));
 			on_view_mode_changed_ptr = mem::read<uintptr_t>(il2cpp::get_method<uintptr_t>(klass, _("OnViewModeChanged"), -1));
 			send_projectile_update_ptr = mem::read<uintptr_t>(il2cpp::get_method<uintptr_t>(klass, _("SendProjectileUpdate"), 1));
 			
@@ -445,6 +447,10 @@ namespace sdk {
 
 		inline vec3_t mount_velocity() {
 			return safe.call<vec3_t>(get_mount_velocity_ptr, this);
+		}
+
+		inline vec3_t get_world_velocity() {
+			return safe.call<vec3_t>(get_world_velocity_ptr, this);
 		}
 
 		inline void on_view_mode_changed() {

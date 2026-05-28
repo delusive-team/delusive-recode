@@ -1,6 +1,6 @@
 #pragma once
 #include "../../sdk/sdk.h"
-#include "violation.h"
+#include "violation/violation.h"
 #include "../../../configs/configs.h"
 
 void viewmodel() {
@@ -83,7 +83,6 @@ void viewmodel_changer() {
 
 	auto* player = sdk::local_player;
 	
-	// Проверяем, целится ли игрок
 	bool is_aiming = false;
 	auto* input = player->input();
 	if (memory::is_valid(input)) {
@@ -346,7 +345,6 @@ inline void camera_mode() {
 	if (!memory::is_valid(sdk::local_player))
 		return;
 
-	// 1. Normal camera mode (FPP/TPP distance overrides)
 	update_camera_mode(sdk::local_player);
 }
 
@@ -417,9 +415,6 @@ inline void fake_admin() {
 
 	if (config::misc::exploits::exploits_admin_flag.value && !core::g_unloading) {
 		sdk::local_player->add_flag(enums::e_flag::is_admin);
-	}
-	else {
-		sdk::local_player->remove_flag(enums::e_flag::is_admin);
 	}
 }
 

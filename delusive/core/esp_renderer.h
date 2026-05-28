@@ -1,5 +1,5 @@
 #pragma once
-#include "../DllMain.h"
+#include "../thirdparty/imgui/imgui.h"
 #include <string>
 #include <algorithm>
 #include <cstdarg>
@@ -174,5 +174,7 @@ public:
         }
     }
 };
+
+#undef draw_list
 
 #define esp_render c_esp_renderer::get()
