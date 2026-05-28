@@ -24,6 +24,7 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+#include <mutex>
 #include "main_camera.h"
 #include "bundles.h"
 
@@ -115,11 +116,21 @@ namespace sdk {
 	class BasePlayer;
 
 	struct PlayerCache {
+		std::mutex mtx;
+
 		std::vector< BasePlayer* > players = { };
 
 		std::unordered_map< BasePlayer*, bool > visible_states = { };
 		std::unordered_map< BasePlayer*, enums::e_player_state > player_states = { };
 		std::unordered_map< BasePlayer*, std::unordered_map< enums::e_bone, vec3_t > > bone_positions = { };
+
+		void clear() {
+			std::lock_guard<std::mutex> lock(mtx);
+			players.clear();
+			visible_states.clear();
+			player_states.clear();
+			bone_positions.clear();
+		}
 	};
 
 	inline PlayerCache info;
@@ -505,15 +516,18 @@ namespace sdk {
 		}
 
 		inline void set_visible_state(bool state) {
+			std::lock_guard<std::mutex> lock(info.mtx);
 			info.visible_states[this] = state;
 		}
 
 		inline void set_player_states(enums::e_player_state state) {
+			std::lock_guard<std::mutex> lock(info.mtx);
 			info.player_states[this] = state;
 		}
 
 		inline auto player_state()
 		{
+			std::lock_guard<std::mutex> lock(info.mtx);
 			if (!info.player_states.contains(this))
 				return enums::e_player_state::inside;
 
@@ -521,6 +535,7 @@ namespace sdk {
 		}
 
 		inline bool is_visible() {
+			std::lock_guard<std::mutex> lock(info.mtx);
 			if (!info.visible_states.contains(this))
 				return false;
 
@@ -542,6 +557,7 @@ namespace sdk {
 
 		inline void set_bone_positions()
 		{
+			std::lock_guard<std::mutex> lock(info.mtx);
 			for (auto& bone : bones)
 			{
 				auto& player = info.bone_positions[this];
@@ -551,6 +567,7 @@ namespace sdk {
 
 		inline vec3_t bone_position(enums::e_bone bone)
 		{
+			std::lock_guard<std::mutex> lock(info.mtx);
 			if (!info.bone_positions.contains(this))
 				return { };
 

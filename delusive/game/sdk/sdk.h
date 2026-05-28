@@ -275,7 +275,7 @@ namespace sdk {
         camera = nullptr;
         local_player = nullptr;
 
-        info = { };
+        info.clear();
 
         bundles::destroy_all();
     }

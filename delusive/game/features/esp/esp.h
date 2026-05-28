@@ -468,73 +468,83 @@ namespace esp {
 			logged_success = true;
 		}
 
-		sdk::info.players.clear();
+		{
+			std::lock_guard<std::mutex> lock(sdk::info.mtx);
+			sdk::info.players.clear();
 
-		for (auto i = 0; i < count; ++i) {
-			const auto base_networkable = entity_list->get< uintptr_t >(i);
-			if (!memory::is_valid(base_networkable)) {
-				static bool logged_inv_net = false;
-				if (!logged_inv_net) {
-					LOG_WARN("[ESP] Invalid base_networkable at index %d", i);
-					logged_inv_net = true;
-				}
-				continue;
-			}
-
-			const auto& base_object = mem::read< uintptr_t >(base_networkable + 0x10);
-			if (!memory::is_valid(base_object)) {
-				static bool logged_inv_obj1 = false;
-				if (!logged_inv_obj1) {
-					LOG_WARN("[ESP] Invalid base_object at index %d", i);
-					logged_inv_obj1 = true;
-				}
-				continue;
-			}
-
-			const auto& object = mem::read< uintptr_t >(base_object + 0x30);
-			if (!memory::is_valid(object)) {
-				static bool logged_inv_obj2 = false;
-				if (!logged_inv_obj2) {
-					LOG_WARN("[ESP] Invalid object at index %d", i);
-					logged_inv_obj2 = true;
-				}
-				continue;
-			}
-
-			const auto& tag = mem::read< uint16_t >(object + 0x54);
-			if (tag == 6) {
-				static bool logged_tag6 = false;
-				if (!logged_tag6) {
-					LOG("[ESP] Found entity with tag 6 (Player)!");
-					logged_tag6 = true;
-				}
-
-				const auto& player = mem::read< sdk::BasePlayer* >(base_object + 0x28);
-				if (!memory::is_valid(player)) {
-					static bool logged_inv_player = false;
-					if (!logged_inv_player) {
-						LOG_ERROR("[ESP] Player pointer is invalid for tag 6!");
-						logged_inv_player = true;
+			for (auto i = 0; i < count; ++i) {
+				const auto base_networkable = entity_list->get< uintptr_t >(i);
+				if (!memory::is_valid(base_networkable)) {
+					static bool logged_inv_net = false;
+					if (!logged_inv_net) {
+						LOG_WARN("[ESP] Invalid base_networkable at index %d", i);
+						logged_inv_net = true;
 					}
 					continue;
 				}
 
-				if (player->lifestate() || player->is_local_player())
+				const auto& base_object = mem::read< uintptr_t >(base_networkable + 0x10);
+				if (!memory::is_valid(base_object)) {
+					static bool logged_inv_obj1 = false;
+					if (!logged_inv_obj1) {
+						LOG_WARN("[ESP] Invalid base_object at index %d", i);
+						logged_inv_obj1 = true;
+					}
 					continue;
-
-				static bool logged_valid_player = false;
-				if (!logged_valid_player) {
-					LOG_OK("[ESP] Successfully parsed a valid player to ESP list!");
-					logged_valid_player = true;
 				}
 
-				sdk::info.players.push_back(player);
+				const auto& object = mem::read< uintptr_t >(base_object + 0x30);
+				if (!memory::is_valid(object)) {
+					static bool logged_inv_obj2 = false;
+					if (!logged_inv_obj2) {
+						LOG_WARN("[ESP] Invalid object at index %d", i);
+						logged_inv_obj2 = true;
+					}
+					continue;
+				}
+
+				const auto& tag = mem::read< uint16_t >(object + 0x54);
+				if (tag == 6) {
+					static bool logged_tag6 = false;
+					if (!logged_tag6) {
+						LOG("[ESP] Found entity with tag 6 (Player)!");
+						logged_tag6 = true;
+					}
+
+					const auto& player = mem::read< sdk::BasePlayer* >(base_object + 0x28);
+					if (!memory::is_valid(player)) {
+						static bool logged_inv_player = false;
+						if (!logged_inv_player) {
+							LOG_ERROR("[ESP] Player pointer is invalid for tag 6!");
+							logged_inv_player = true;
+						}
+						continue;
+					}
+
+					if (player->lifestate() || player->is_local_player())
+						continue;
+
+					static bool logged_valid_player = false;
+					if (!logged_valid_player) {
+						LOG_OK("[ESP] Successfully parsed a valid player to ESP list!");
+						logged_valid_player = true;
+					}
+
+					sdk::info.players.push_back(player);
+				}
 			}
 		}
 
 		if (!sdk::MapInterface::is_open()) {
 			auto ctx = unity::Camera::get_frame_context();
-			for (auto&& player : sdk::info.players) {
+			
+			std::vector<sdk::BasePlayer*> players_copy;
+			{
+				std::lock_guard<std::mutex> lock(sdk::info.mtx);
+				players_copy = sdk::info.players;
+			}
+
+			for (auto&& player : players_copy) {
 				render_player(player, ctx);
 			}
 
@@ -558,7 +568,7 @@ namespace esp {
 
 					// Build enemy list from current ESP scan
 					std::vector<sh_entity_t> visible_enemies;
-					for (auto& ep : sdk::info.players) {
+					for (auto& ep : players_copy) {
 						if (!memory::is_valid(ep)) continue;
 						const auto& tr = ep->transform();
 						if (!memory::is_valid(tr)) continue;

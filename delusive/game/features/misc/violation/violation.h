@@ -101,15 +101,11 @@ namespace violation {
             return;
         }
 
-        vec3_t pos   = transform->position();
+                vec3_t pos   = transform->position();
 
         bool grounded = false;
-        auto* model_state = player->model_state();
-        if (memory::is_valid(model_state)) {
-            grounded = model_state->has_flag(enums::e_model_state_flags::on_ground);
-        }
-        if (!grounded && memory::is_valid(movement)) {
-            grounded = movement->ground_time() > 0.f;
+        if (memory::is_valid(movement)) {
+            grounded = movement->grounded();
         }
 
         grounded = grounded

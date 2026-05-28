@@ -38,7 +38,13 @@ namespace base_player
             }
         }
 
-        for (auto&& player : sdk::info.players) {
+        std::vector<sdk::BasePlayer*> players_copy;
+        {
+            std::lock_guard<std::mutex> lock(sdk::info.mtx);
+            players_copy = sdk::info.players;
+        }
+
+        for (auto&& player : players_copy) {
             if (player->is_local_player() || player->lifestate())
                 continue;
 

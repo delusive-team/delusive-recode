@@ -295,9 +295,8 @@ void c_gui::render()
 								{
 									gui->begin_child("Aim Assist", 2, 1);
 									{
-										gui->checkbox("Enabled", &config::aimbot::legit_enabled.value, &config::aimbot::legit_aim_key.value, &config::aimbot::legit_aim_key_mode.value);
+										gui->checkbox("Legit Bot", &config::aimbot::legit_enabled.value, &config::aimbot::legit_aim_key.value, &config::aimbot::legit_aim_key_mode.value);
 
-										if (config::aimbot::legit_enabled.value) {
 											gui->slider_float("Field Of View", &config::aimbot::legit_fov.value, 0.f, 180.f, false, "%.0f");
 											gui->checkbox("Dynamic FOV", &config::aimbot::legit_dynamic_fov.value);
 											gui->slider_float("Smoothing", &config::aimbot::legit_smooth.value, 1.f, 50.f, false, "%.1f");
@@ -331,7 +330,6 @@ void c_gui::render()
 												gui->sameline();
 												gui->label_color_edit("##fov_clr", (float*)&config::aimbot::fov_color.value.Value);
 											}
-										}
 									}
 									gui->end_child();
 
@@ -343,39 +341,15 @@ void c_gui::render()
 
 								gui->begin_group();
 								{
-									gui->begin_child("Trigger Assist", 2, 2);
+									gui->begin_child("Additional", 2, 2);
 									{
-										static bool t_enabled = true; static int t_key = 0; static int t_mode = 0;
-										gui->checkbox("Enabled", &t_enabled, &t_key, &t_mode);
 
-										if (t_enabled) {
-											static int delay = 15;
-											static int interval = 75;
-											gui->slider_int("Delay", &delay, 0, 500, false, "%dms");
-											gui->slider_int("Interval", &interval, 0, 1000, false, "%dms");
-
-											static std::vector<int> t_checks = { 1, 1, 1 };
-											const char* t_checks_items[3] = { "Team Check", "Alive Check", "Enemy Check" };
-											gui->multi_dropdown("Checks", t_checks, t_checks_items, IM_ARRAYSIZE(t_checks_items));
-
-											static std::vector<int> t_hitboxes = { 1, 0, 1, 0, 1, 0 };
-											const char* t_hitboxes_items[6] = { "Head", "Neck", "Stomach", "Body", "Arms", "Legs" };
-											gui->multi_dropdown("Hitboxes", t_hitboxes, t_hitboxes_items, IM_ARRAYSIZE(t_hitboxes_items));
-
-											static bool r_adj = false; static int r_key = 0; static int r_mode = 0;
-											gui->checkbox("Readjustment", &r_adj, &r_key, &r_mode);
-										}
 									}
 									gui->end_child();
 
-									gui->begin_child("Misc", 2, 2);
+									gui->begin_child("Exploits", 2, 2);
 									{
-										static bool cursor = true;
-										gui->checkbox("Cursor Offset", &cursor);
-										if (cursor) {
-											static int cx = 50; gui->slider_int("Offset X", &cx, 0, 100, true, "%dpx");
-											static int cy = 50; gui->slider_int("Offset Y", &cy, 0, 100, true, "%dpx");
-										}
+
 									}
 									gui->end_child();
 
