@@ -292,8 +292,8 @@ namespace aimbot {
             if (memory::is_valid(ms))
                 is_aiming = ms->has_flag(enums::e_model_state_flags::in_aim);
 
-            const float base_fov = config::aimbot::legit_fov.value * 1.1f;
-            const float current_fov = (config::aimbot::legit_dynamic_fov.value && is_aiming)
+            const float base_fov = config::aimbot::fov.value * 1.1f;
+            const float current_fov = (config::aimbot::dynamic_fov.value && is_aiming)
                 ? base_fov * 1.4f
                 : base_fov;
 

@@ -495,6 +495,9 @@ namespace config {
                     std::string(dbuf) + _(" ") + std::string(tbuf),
                     dc_id);
             }
+            else {
+                config.write_meta(config.meta.author, config.meta.created, config.meta.discord_user_id);
+            }
 
             for (auto& item : get_items())
                 item->save();

@@ -9,6 +9,7 @@
 #include "../../features/misc/misc.h"
 #include "../../features/visuals/visuals.h"
 #include "../../features/aimbot/legitbot.h"
+#include "../../sdk/convar/admin.h"
 #include "../../features/weapons/weapons.h"
 
 namespace base_player
@@ -75,6 +76,7 @@ namespace base_player
         fast_heal();
         attack_actions();
         exploits_actions();
+        spinbot(state, player);
         aimbot::legitbot::run();
 
         auto* tod_sky = sdk::TOD_Sky::instance();
@@ -90,6 +92,12 @@ namespace base_player
 
         if (var->gui.menu_opened) {
             return;
+        }
+
+        if (config::visuals::weather::removals::visuals_weather_no_underwater.value) {
+            convar::Admin::set_underwater_effect(true);
+        } else {
+            convar::Admin::set_underwater_effect(false);
         }
 
         g_hooks.call( client_input )( player, state );

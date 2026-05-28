@@ -183,6 +183,23 @@ public:
     quat_t() : x(0.f), y(0.f), z(0.f), w(0.f) {}
     quat_t(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
 
+    static quat_t from_euler(float pitch, float yaw, float roll = 0.f) {
+        // pitch = X (up/down), yaw = Y (left/right), roll = Z — all in degrees
+        constexpr float DEG2RAD = 0.01745329252f;
+        float p = pitch * DEG2RAD * 0.5f;
+        float y_ = yaw   * DEG2RAD * 0.5f;
+        float r = roll  * DEG2RAD * 0.5f;
+        float sp = sinf(p), cp = cosf(p);
+        float sy = sinf(y_), cy = cosf(y_);
+        float sr = sinf(r), cr = cosf(r);
+        return {
+            sr * cp * cy - cr * sp * sy,
+            cr * sp * cy + sr * cp * sy,
+            cr * cp * sy - sr * sp * cy,
+            cr * cp * cy + sr * sp * sy
+        };
+    }
+
     quat_t operator*(const quat_t& rhs) const
     {
         return {

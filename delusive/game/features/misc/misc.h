@@ -458,12 +458,27 @@ inline void movement_action() {
 			movement->set_jump_time(0.f);
 		}
 
-		bool suicide_active = config::misc::movement::misc_suicide.value && config::misc::movement::misc_suicide_key.value != 0 && (GetAsyncKeyState(config::misc::movement::misc_suicide_key.value) & 0x8000) != 0;
+		if (config::misc::movement::misc_suicide.value) {
+			const int  key  = config::misc::movement::misc_suicide_key.value;
+			const int  mode = config::misc::movement::misc_suicide_key_mode.value;
 
-		if (suicide_active) {
-			movement->set_was_falling(true);
-			movement->set_previous_velocity(vec3_t(0.f, -1000.f, 0.f));
-			movement->set_ground_time(0.f);
+			bool key_active = false;
+			if (mode == 2) {
+				key_active = true;
+			} else if (key != 0) {
+				if (mode == 0) key_active = (GetAsyncKeyState(key) & 0x8000) != 0; // Hold
+				else           key_active = (GetKeyState(key) & 0x0001) != 0;      // Toggle
+			}
+
+			static bool s_was_active = false;
+			bool triggered = key_active && !s_was_active; // Edge trigger - only first frame
+			s_was_active = key_active;
+
+			if (triggered) {
+				movement->set_was_falling(true);
+				movement->set_previous_velocity(vec3_t(0.f, -1000.f, 0.f));
+				movement->set_ground_time(0.f);
+			}
 		}
 	}
 
@@ -622,6 +637,33 @@ void attack_actions() {
 			mounted->set_can_wield_items(true);
 		}
 	}
+}
+
+void spinbot(sdk::InputState* state, sdk::BasePlayer* player) {
+	bool active = config::misc::exploits::spinbot.value && !core::g_unloading;
+	if (!active || !memory::is_valid(state) || !memory::is_valid(player)) return;
+
+	auto current_input = state->current();
+	if (!memory::is_valid(current_input)) return;
+
+	float target_pitch = config::misc::exploits::spinbot_pitch.value;
+	float speed = config::misc::exploits::spinbot_speed.value;
+	float yaw_offset = config::misc::exploits::spinbot_yaw.value;
+
+	static float accumulated_yaw = 0.f;
+	accumulated_yaw += speed * unity::Time::delta_time();
+
+	if (accumulated_yaw > 360.f) accumulated_yaw -= 360.f;
+	if (accumulated_yaw < 0.f) accumulated_yaw += 360.f;
+
+	float final_yaw = accumulated_yaw + yaw_offset;
+	if (final_yaw > 360.f) final_yaw -= 360.f;
+
+	vec3_t angles = current_input->aim_angles();
+	angles.x = target_pitch;
+	angles.y = final_yaw;
+
+	current_input->set_aim_angles(angles);
 }
 
 inline bool g_traps_active = false;

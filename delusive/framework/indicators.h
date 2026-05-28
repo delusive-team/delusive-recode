@@ -572,7 +572,7 @@ inline void c_gui::render_flyhack_indicator()
 		progress = std::fmodf((float)ImGui::GetTime() * 0.7f, 1.0f);
 	}
 
-	bool show_window = is_indicator_enabled && (is_menu_open || (is_on_server && progress > 0.01f));
+	bool show_window = is_indicator_enabled && (is_menu_open || is_on_server);
 
 	static float alpha = 0.f;
 	alpha = ImClamp(alpha + (gui->fixed_speed(8.f) * (show_window ? 1.f : -1.f)), 0.f, 1.f);
@@ -838,7 +838,7 @@ inline void c_gui::render_traps_indicator()
 inline void c_gui::render_fov()
 {
 	static float fov_alpha = 0.f;
-	bool show_fov = config::aimbot::legit_enabled.value && config::aimbot::draw_fov.value;
+	bool show_fov = (config::aimbot::legit_enabled.value || config::aimbot::rage_enabled.value) && config::aimbot::draw_fov.value;
 	
 	fov_alpha = ImClamp(fov_alpha + (gui->fixed_speed(8.f) * (show_fov ? 1.f : -1.f)), 0.f, 1.f);
 	
@@ -858,8 +858,8 @@ inline void c_gui::render_fov()
 		}
 	}
 
-	float base_fov = config::aimbot::legit_fov.value * 1.1f;
-	float current_fov = (config::aimbot::legit_dynamic_fov.value && is_aiming)
+	float base_fov    = config::aimbot::fov.value * 1.1f;
+	float current_fov = (config::aimbot::dynamic_fov.value && is_aiming)
 		? base_fov * 1.4f : base_fov;
 
 	constexpr float DEG_TO_RAD_HALF = 0.00872664625f;

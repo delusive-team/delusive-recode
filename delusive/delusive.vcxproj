@@ -91,6 +91,7 @@
     <ClInclude Include="game\hooks\impl\client_late_update.h" />
     <ClInclude Include="game\hooks\impl\client_on_disconnected.h" />
     <ClInclude Include="game\hooks\impl\item_icon.h" />
+    <ClInclude Include="game\hooks\impl\projectile_do_hit.h" />
     <ClInclude Include="game\hooks\impl\steam_platform.h" />
     <ClInclude Include="game\hooks\impl\tod_sky.h" />
     <ClInclude Include="game\hooks\impl\write_to_stream.h" />

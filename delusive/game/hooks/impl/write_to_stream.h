@@ -3,7 +3,7 @@
 #include "../../../configs/configs.h"
 #include "../hooks.h"
 #include "../../features/weapons/weapons.h"
-
+#include "../../features/aimbot/ragebot.h"
 namespace projectile_shoot {
 	static void write_to_stream(void* _this, void* stream) {
 		if (core::g_unloading)
@@ -16,6 +16,8 @@ namespace projectile_shoot {
 			return g_hooks.call(write_to_stream)(_this, stream);
 
 		features::c_weapons::get().run(sdk::local_player);
+
+		aimbot::ragebot::process_shoot_rpc(_this);
 
 		return g_hooks.call(write_to_stream)(_this, stream);
 	}

@@ -297,8 +297,8 @@ void c_gui::render()
 									{
 										gui->checkbox("Legit Bot", &config::aimbot::legit_enabled.value, &config::aimbot::legit_aim_key.value, &config::aimbot::legit_aim_key_mode.value);
 
-											gui->slider_float("Field Of View", &config::aimbot::legit_fov.value, 0.f, 180.f, false, "%.0f");
-											gui->checkbox("Dynamic FOV", &config::aimbot::legit_dynamic_fov.value);
+											gui->slider_float("Field Of View", &config::aimbot::fov.value, 0.f, 180.f, false, "%.0f");
+											gui->checkbox("Dynamic FOV", &config::aimbot::dynamic_fov.value);
 											gui->slider_float("Smoothing", &config::aimbot::legit_smooth.value, 1.f, 50.f, false, "%.1f");
 
 											gui->checkbox("Recoil Compensation", &config::aimbot::legit_rcs.value);
@@ -341,15 +341,20 @@ void c_gui::render()
 
 								gui->begin_group();
 								{
-									gui->begin_child("Additional", 2, 2);
+									gui->begin_child("Rage Bot", 2, 2);
 									{
-
+										gui->checkbox("Enable Rage Bot", &config::aimbot::rage_enabled.value, &config::aimbot::rage_aim_key.value, &config::aimbot::rage_aim_key_mode.value);
+										if (config::aimbot::rage_enabled.value) {
+											gui->slider_float("Field Of View", &config::aimbot::fov.value, 0.f, 180.f, false, "%.0f");
+											gui->checkbox("Dynamic FOV", &config::aimbot::dynamic_fov.value);
+											gui->slider_float("Hit Chance", &config::aimbot::rage_hitchance.value, 0.f, 100.f, false, "%.0f%%");
+										}
 									}
 									gui->end_child();
 
 									gui->begin_child("Exploits", 2, 2);
 									{
-
+										gui->checkbox("Bullet Teleport", &config::aimbot::rage_bullet_tp.value);
 									}
 									gui->end_child();
 
@@ -747,6 +752,13 @@ void c_gui::render()
 											ImGui::EndTooltip();
 										}
 
+										gui->checkbox("Spinbot", &config::misc::exploits::spinbot.value);
+										if (config::misc::exploits::spinbot.value) {
+											gui->slider_float("Spinbot Pitch", &config::misc::exploits::spinbot_pitch.value, -89.f, 89.f);
+											gui->slider_float("Spinbot Speed", &config::misc::exploits::spinbot_speed.value, 1.f, 360.f);
+											gui->slider_float("Spinbot Yaw Offset", &config::misc::exploits::spinbot_yaw.value, 0.f, 360.f);
+										}
+
 										gui->checkbox("Anti-Fly Kick", &config::misc::exploits::exploits_anti_fly_hack_kick.value);
 										if (ImGui::IsItemHovered())
 										{
@@ -901,7 +913,7 @@ void c_gui::render()
 
 										ImGui::Separator();
 
-										gui->checkbox("Suicide", &config::misc::movement::misc_suicide.value, &config::misc::movement::misc_suicide_key.value, nullptr);
+										gui->checkbox("Suicide", &config::misc::movement::misc_suicide.value, &config::misc::movement::misc_suicide_key.value, &config::misc::movement::misc_suicide_key_mode.value);
 										if (ImGui::IsItemHovered())
 										{
 											ImGui::BeginTooltip();
@@ -1071,7 +1083,20 @@ void c_gui::render()
 
 										gui->checkbox("Weapon Spam / Fast Shot", &config::weapons::weapon_spam.value, &config::weapons::weapon_spam_key.value, &config::weapons::weapon_spam_key_mode.value);
 										if (config::weapons::weapon_spam.value) {
-											gui->slider_float("Spam Interval / Delay", &config::weapons::weapon_spam_delay.value, 1.f, 100.f, false, "%.0f%%");
+											gui->slider_float("Repeat Delay (ms)", &config::weapons::weapon_spam_delay.value, 1.f, 500.f, false, "%.0f ms");
+										}
+
+										gui->checkbox("Thick Bullet", &config::weapons::thick_bullet.value);
+										if (config::weapons::thick_bullet.value) {
+											gui->slider_float("Thickness Size", &config::weapons::thick_bullet_size.value, 0.1f, 1.5f, false, "%.2f");
+										}
+										gui->checkbox("Instant Bullet", &config::weapons::instant_bullet.value);
+										gui->checkbox("Weapon Penetration", &config::weapons::exploits::weapon_penetration.value);
+										
+										gui->checkbox("Hitbox Override", &config::weapons::exploits::hitbox_override.value);
+										if (config::weapons::exploits::hitbox_override.value) {
+											const char* hitbox_modes[] = { "Head", "Body", "Random" };
+											gui->dropdown("Hitbox Mode", &config::weapons::exploits::hitbox_override_mode.value, hitbox_modes, 3);
 										}
 									}
 									gui->end_child();

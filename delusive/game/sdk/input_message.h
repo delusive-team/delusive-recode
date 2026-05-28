@@ -12,6 +12,7 @@ namespace sdk {
 			il2cpp_field_offset(aim_angles_ptr, _(""), _("InputMessage"), _("aimAngles"));
 		}
 
+		il2cpp_field_get(vec3_t, aim_angles, aim_angles_ptr);
 		il2cpp_field_set(vec3_t, set_aim_angles, aim_angles_ptr);
 	};
 }

@@ -379,8 +379,14 @@ namespace config {
         CFG_ITEM(bool, legit_enabled, false);
         CFG_ITEM(int, legit_aim_key, 0);
         CFG_ITEM(int, legit_aim_key_mode, 0);
-        CFG_ITEM(float, legit_fov, 90.f);
-        CFG_ITEM(bool, legit_dynamic_fov, false);
+        CFG_ITEM(float, fov, 90.f);
+        CFG_ITEM(bool, dynamic_fov, false);
+
+        CFG_ITEM(bool, rage_enabled, false);
+        CFG_ITEM(int, rage_aim_key, 0);
+        CFG_ITEM(int, rage_aim_key_mode, 0);
+        CFG_ITEM(float, rage_hitchance, 100.f);
+        CFG_ITEM(bool, rage_bullet_tp, false);
         CFG_ITEM(float, legit_smooth, 10.f);
         CFG_ITEM(bool, legit_rcs, false);
         CFG_ITEM(float, legit_rcs_amount, 100.f);
@@ -417,6 +423,16 @@ namespace config {
         CFG_ITEM(float, weapon_spam_delay, 10.f);
         CFG_ITEM(bool, insta_eoka, false);
         CFG_ITEM(float, eoka_chance, 100.f);
+        
+        CFG_ITEM(bool, thick_bullet, false);
+        CFG_ITEM(float, thick_bullet_size, 0.75f);
+        CFG_ITEM(bool, instant_bullet, false);
+
+        namespace exploits {
+            CFG_ITEM(bool, weapon_penetration, false);
+            CFG_ITEM(bool, hitbox_override, false);
+            CFG_ITEM(int, hitbox_override_mode, 0); // 0 = Head, 1 = Body, 2 = Random
+        }
     }
 
     namespace esp {
@@ -580,12 +596,17 @@ namespace config {
             CFG_ITEM(bool, misc_infinite_jump, false);
             CFG_ITEM(bool, misc_suicide, false);
             CFG_ITEM(int, misc_suicide_key, 0);
+            CFG_ITEM(int, misc_suicide_key_mode, 0);
             CFG_ITEM(bool, misc_climb_assist, false);
             CFG_ITEM(bool, misc_climb_assist_bypass, false);
             CFG_ITEM(bool, misc_always_sprint, false);
         }
         namespace exploits {
             CFG_ITEM(bool, exploits_admin_flag, false);
+            CFG_ITEM(bool, spinbot, false);
+            CFG_ITEM(float, spinbot_pitch, 89.0f);
+            CFG_ITEM(float, spinbot_speed, 100.0f);
+            CFG_ITEM(float, spinbot_yaw, 0.0f);
             CFG_ITEM(bool, exploits_anti_fly_hack_kick, false);
             CFG_ITEM(bool, exploits_extended_melee, false);
             CFG_ITEM(bool, exploits_name_spoofer, false);
@@ -689,6 +710,7 @@ namespace config {
                 CFG_ITEM(bool, visuals_weather_no_fog, false);
                 CFG_ITEM(bool, visuals_weather_no_rain, false);
                 CFG_ITEM(bool, visuals_weather_no_sun, false);
+                CFG_ITEM(bool, visuals_weather_no_underwater, false);
             }
             CFG_ITEM(bool, modify_fog, false);
             CFG_ITEM(float, modify_fog_value, 0.0f);

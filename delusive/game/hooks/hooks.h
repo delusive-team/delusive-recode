@@ -221,6 +221,8 @@ inline hooks_t g_hooks;
 #include "impl/steam_platform.h"
 #include "impl/client_on_disconnected.h"
 #include "impl/write_to_stream.h"
+#include "impl/projectile_do_hit.h"
+#include "impl/player_projectile_attack_write_to_stream.h"
 
 namespace hooks {
     inline void initialize() {
@@ -231,9 +233,12 @@ namespace hooks {
         HOOK_ADD_DIRECT_N(_(""), _("Client"), _("LateUpdate"), 0, client::late_update);
         HOOK_ADD(_(""), _("BaseMelee"), _("DoAttack"), base_melee::do_attack);
         HOOK_ADD(_(""), _("BaseMelee"), _("ProcessAttack"), base_melee::process_attack);
+        HOOK_ADD_DIRECT_N(_(""), _("BaseMelee"), _("OnViewmodelEvent"), 1, base_melee::on_viewmodel_event);
         HOOK_ADD(_("Rust.Platform.Steam"), _("SteamPlatform"), _("Update"), steam_platform::steam_platform_update);
         HOOK_ADD_DIRECT_N(_("Network"), _("Client"), _("OnDisconnected"), 1, client::on_disconnected);
         HOOK_ADD(_("ProtoBuf"), _("ProjectileShoot"), _("WriteToStream"), projectile_shoot::write_to_stream);
+        HOOK_ADD(_("ProtoBuf"), _("PlayerProjectileAttack"), _("WriteToStream"), player_projectile_attack::write_to_stream);
+        HOOK_ADD_DIRECT_N(_(""), _("Projectile"), _("DoHit"), 3, hooks::projectile_do_hit);
     }
 
     inline void detach() {
@@ -247,7 +252,10 @@ namespace hooks {
         HOOK_REMOVE_DIRECT_N(_(""), _("Client"), _("LateUpdate"), 0, client::late_update);
         HOOK_REMOVE(_(""), _("BaseMelee"), _("DoAttack"), base_melee::do_attack);
         HOOK_REMOVE(_(""), _("BaseMelee"), _("ProcessAttack"), base_melee::process_attack);
+        HOOK_REMOVE_DIRECT_N(_(""), _("BaseMelee"), _("OnViewmodelEvent"), 1, base_melee::on_viewmodel_event);
         HOOK_REMOVE(_("Rust.Platform.Steam"), _("SteamPlatform"), _("Update"), steam_platform::steam_platform_update);
         HOOK_REMOVE_DIRECT_N(_("Network"), _("Client"), _("OnDisconnected"), 1, client::on_disconnected);
+        HOOK_REMOVE(_("ProtoBuf"), _("PlayerProjectileAttack"), _("WriteToStream"), player_projectile_attack::write_to_stream);
+        HOOK_REMOVE_DIRECT_N(_(""), _("Projectile"), _("DoHit"), 3, hooks::projectile_do_hit);
     }
 }

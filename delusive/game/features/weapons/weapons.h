@@ -18,12 +18,13 @@ struct WeaponOriginals {
     float recoilPitchMin = -1.f;
     float recoilPitchMax = -1.f;
     float stancePenaltyScale = -1.f;
+    float repeatDelay = -1.f;
     bool  automatic = false;
     float deployDelay = -1.f;
     void* weapon_ptr = nullptr;
 
     bool valid() const { return weapon_ptr != nullptr && aimCone >= 0.f; }
-    void invalidate() { weapon_ptr = nullptr; aimCone = -1.f; deployDelay = -1.f; }
+    void invalidate() { weapon_ptr = nullptr; aimCone = -1.f; deployDelay = -1.f; repeatDelay = -1.f; }
 };
 
 namespace features {
@@ -59,75 +60,29 @@ namespace features {
     }
 
     inline bool c_weapons::cache_originals(sdk::HeldEntity* weapon) {
-        if (!memory::is_valid(weapon)) {
-            LOG_ERROR(_("[Weapons] cache_originals failed: weapon pointer %p is not memory valid!"), weapon);
-            return false;
-        }
+        if (!memory::is_valid(weapon)) return false;
 
-        LOG(_("[Weapons] Caching originals for weapon: %p"), weapon);
-
-        LOG(_("[Weapons] Reading aim_cone..."));
         m_orig.aimCone = weapon->aim_cone();
-        LOG(_("[Weapons] aimCone = %f"), m_orig.aimCone);
-
-        LOG(_("[Weapons] Reading hip_aim_cone..."));
         m_orig.hipAimCone = weapon->hip_aim_cone();
-        LOG(_("[Weapons] hipAimCone = %f"), m_orig.hipAimCone);
-
-        LOG(_("[Weapons] Reading aim_cone_penalty_max..."));
         m_orig.aimConePenaltyMax = weapon->aim_cone_penalty_max();
-        LOG(_("[Weapons] aimConePenaltyMax = %f"), m_orig.aimConePenaltyMax);
-
-        LOG(_("[Weapons] Reading aimcone_penalty_per_shot..."));
         m_orig.aimconePenaltyPerShot = weapon->aimcone_penalty_per_shot();
-        LOG(_("[Weapons] aimconePenaltyPerShot = %f"), m_orig.aimconePenaltyPerShot);
-
-        LOG(_("[Weapons] Reading aim_sway..."));
         m_orig.aimSway = weapon->aim_sway();
-        LOG(_("[Weapons] aimSway = %f"), m_orig.aimSway);
-
-        LOG(_("[Weapons] Reading aim_sway_speed..."));
         m_orig.aimSwaySpeed = weapon->aim_sway_speed();
-        LOG(_("[Weapons] aimSwaySpeed = %f"), m_orig.aimSwaySpeed);
+        m_orig.repeatDelay = weapon->repeat_delay();
 
-        LOG(_("[Weapons] Checking FlintStrikeWeapon class..."));
         bool is_flint = weapon->is_class(_("FlintStrikeWeapon"));
-        LOG(_("[Weapons] is FlintStrikeWeapon = %d"), is_flint);
-
         auto* rp = is_flint ? nullptr : get_recoil_props(weapon);
-        LOG(_("[Weapons] RecoilProperties pointer: %p"), rp);
         if (rp) {
-            LOG(_("[Weapons] Reading recoil_yaw_min..."));
-            m_orig.recoilYawMin = rp->recoil_yaw_min();
-            LOG(_("[Weapons] recoilYawMin = %f"), m_orig.recoilYawMin);
-
-            LOG(_("[Weapons] Reading recoil_yaw_max..."));
-            m_orig.recoilYawMax = rp->recoil_yaw_max();
-            LOG(_("[Weapons] recoilYawMax = %f"), m_orig.recoilYawMax);
-
-            LOG(_("[Weapons] Reading recoil_pitch_min..."));
+            m_orig.recoilYawMin  = rp->recoil_yaw_min();
+            m_orig.recoilYawMax  = rp->recoil_yaw_max();
             m_orig.recoilPitchMin = rp->recoil_pitch_min();
-            LOG(_("[Weapons] recoilPitchMin = %f"), m_orig.recoilPitchMin);
-
-            LOG(_("[Weapons] Reading recoil_pitch_max..."));
             m_orig.recoilPitchMax = rp->recoil_pitch_max();
-            LOG(_("[Weapons] recoilPitchMax = %f"), m_orig.recoilPitchMax);
         }
 
-        LOG(_("[Weapons] Reading stance_penalty_scale..."));
         m_orig.stancePenaltyScale = weapon->stance_penalty_scale();
-        LOG(_("[Weapons] stancePenaltyScale = %f"), m_orig.stancePenaltyScale);
-
-        LOG(_("[Weapons] Reading automatic..."));
         m_orig.automatic = weapon->automatic();
-        LOG(_("[Weapons] automatic = %d"), m_orig.automatic);
-
-        LOG(_("[Weapons] Reading deploy_delay..."));
         m_orig.deployDelay = weapon->deploy_delay();
-        LOG(_("[Weapons] deployDelay = %f"), m_orig.deployDelay);
-
         m_orig.weapon_ptr = weapon;
-        LOG(_("[Weapons] Caching originals successfully completed."));
         return true;
     }
 
@@ -229,14 +184,6 @@ namespace features {
                                     weapon->is_class(_("CompoundBowWeapon")) ||
                                     weapon->is_class(_("CrossbowWeapon")) ||
                                     weapon->is_class(_("FlintStrikeWeapon"));
-        
-        static void* last_weapon_ptr = nullptr;
-        static bool last_is_projectile = false;
-        if (last_weapon_ptr != weapon) {
-            LOG(_("[Weapons] Held entity changed from %p to %p (is_projectile=%d)"), last_weapon_ptr, weapon, is_projectile_weapon);
-            last_weapon_ptr = weapon;
-            last_is_projectile = is_projectile_weapon;
-        }
 
         if (!is_projectile_weapon) {
             m_orig.invalidate();
@@ -246,32 +193,6 @@ namespace features {
         if (m_orig.weapon_ptr != weapon) {
             cache_originals(weapon);
         }
-
-        static struct {
-            bool no_spread_weapon = false;
-            bool no_spread_projectile = false;
-            bool no_sway = false;
-            bool no_recoil = false;
-            bool full_auto = false;
-            bool no_deploy_delay = false;
-            bool weapon_spam = false;
-            bool insta_eoka = false;
-        } last_cfg;
-
-        #define LOG_CFG_CHANGE(name, current) \
-            if (last_cfg.name != current) { \
-                LOG(_("[Weapons] Config option '" #name "' changed from %d to %d"), last_cfg.name, current); \
-                last_cfg.name = current; \
-            }
-
-        LOG_CFG_CHANGE(no_spread_weapon, config::weapons::no_spread_weapon.value);
-        LOG_CFG_CHANGE(no_spread_projectile, config::weapons::no_spread_projectile.value);
-        LOG_CFG_CHANGE(no_sway, config::weapons::no_sway.value);
-        LOG_CFG_CHANGE(no_recoil, config::weapons::no_recoil.value);
-        LOG_CFG_CHANGE(full_auto, config::weapons::full_auto.value);
-        LOG_CFG_CHANGE(no_deploy_delay, config::weapons::no_deploy_delay.value);
-        LOG_CFG_CHANGE(weapon_spam, config::weapons::weapon_spam.value);
-        LOG_CFG_CHANGE(insta_eoka, config::weapons::insta_eoka.value);
 
         if (config::weapons::no_spread_weapon.value)
             apply_spread_weapon(weapon);
@@ -303,7 +224,7 @@ namespace features {
             weapon->set_time_since_deploy(999.f);
         }
 
-        // Weapon Spam
+        // Weapon Spam — reduce repeat delay to fire faster
         if (config::weapons::weapon_spam.value &&
             !weapon->is_class(_("FlintStrikeWeapon")))
         {
@@ -319,16 +240,15 @@ namespace features {
             }
 
             if (active) {
-                static float s_last_spam_time = unity::Time::realtime_since_startup();
-                float current_time = unity::Time::realtime_since_startup();
-                float delay = config::weapons::weapon_spam_delay.value / 100.f;
-
-                if (current_time - s_last_spam_time > delay) {
-                    LOG(_("[Weapons] Weapon spam: sending attack signal"));
-                    weapon->send_signal_broadcast(enums::e_signal::attack);
-                    s_last_spam_time = current_time;
-                }
+                float delay = (std::max)(config::weapons::weapon_spam_delay.value / 1000.f, 0.001f);
+                weapon->set_repeat_delay(delay);
             }
+            else if (m_orig.repeatDelay >= 0.f) {
+                weapon->set_repeat_delay(m_orig.repeatDelay);
+            }
+        }
+        else if (m_orig.repeatDelay >= 0.f) {
+            weapon->set_repeat_delay(m_orig.repeatDelay);
         }
 
         // Insta Eoka
@@ -357,7 +277,10 @@ namespace features {
         if (m_orig.deployDelay >= 0.f)
             weapon->set_deploy_delay(m_orig.deployDelay);
 
+        // Restore Repeat Delay
+        if (m_orig.repeatDelay >= 0.f)
+            weapon->set_repeat_delay(m_orig.repeatDelay);
+
         m_orig.invalidate();
-        LOG(_("[Weapons] Successfully restored originals on unload."));
     }
 }

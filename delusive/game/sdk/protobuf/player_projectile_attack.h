@@ -16,5 +16,7 @@ namespace protobuf {
 			il2cpp_field_offset(hit_distance_ptr, _("ProtoBuf"), _("PlayerProjectileAttack"), _("hitDistance"));
 			il2cpp_field_offset(player_attack_ptr, _("ProtoBuf"), _("PlayerProjectileAttack"), _("playerAttack"));
 		}
+
+		il2cpp_field_get(PlayerAttack*, player_attack, player_attack_ptr);
 	};
 }
